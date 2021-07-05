@@ -259,7 +259,7 @@ namespace PMES_SAM.Forms
             {
                 if (MessageBox.Show("Deseja emitir um novo relatório?", "Emitindo Relatório...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
                 {
-                    dynamic source;
+                    List<Log> source;
 
                     if (loggedUser.Credentials.Contains(Credential.ExportFullReport) || loggedUser.Credentials.Contains(Credential.Master) || loggedUser.Credentials.Contains(Credential.Total))
                     {
@@ -269,12 +269,12 @@ namespace PMES_SAM.Forms
                         }
                         else
                         {
-                            source = dgvMain.Rows;
+                            source = await GetLogFromGrid(dgvMain.Rows);
                         }
                     }
                     else
                     {
-                        source = dgvMain.Rows;
+                        source = await GetLogFromGrid(dgvMain.Rows);
                     }
 
                     ExportToSheet(source);
@@ -282,7 +282,7 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-        private void ctxExport_Click(object sender, EventArgs e)
+        private async void ctxExport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -290,7 +290,7 @@ namespace PMES_SAM.Forms
                 {
                     if (dgvMain.SelectedRows.Count > 0)
                     {
-                        ExportToSheet(dgvMain.SelectedRows);
+                        ExportToSheet(await GetLogFromGrid(dgvMain.SelectedRows));
                     }
                     else
                     {
@@ -306,15 +306,13 @@ namespace PMES_SAM.Forms
             {
                 using (var workbook = new XLWorkbook())
                 {
-                    int rowCount = 0;
-
-                    var worksheet = workbook.Worksheets.Add($"SAM RELATORIO");
+                    var worksheet = workbook.Worksheets.Add($"SAM - RELATÓRIO");
 
                     worksheet.Cell("A1").Value = "DATA";
                     worksheet.Cell("A1").Style.Font.Bold = true;
                     worksheet.Cell("A1").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                     worksheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
+                    
                     worksheet.Cell("B1").Value = "DESCRIÇÃO";
                     worksheet.Cell("B1").Style.Font.Bold = true;
                     worksheet.Cell("B1").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
@@ -329,123 +327,31 @@ namespace PMES_SAM.Forms
 
                     for (int i = 0; i < logs.Count; i++)
                     {
-                        for (int j = 1; j <= 3; j++)
-                        {
-                            worksheet.Cell(rowIndex, j).Value = logs[i].Date;
-                        }
-                        
+                        worksheet.Cell(rowIndex, 1).Value = logs[i].Date;
+                        worksheet.Cell(rowIndex, 2).Value = logs[i].Description;
+                        worksheet.Cell(rowIndex, 3).Value = logs[i].Usuario.User;
 
+                        worksheet.Cell(rowIndex, 1).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(rowIndex, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        worksheet.Cell(rowIndex, 2).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        worksheet.Cell(rowIndex, 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         worksheet.Cell(rowIndex, 3).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                         worksheet.Cell(rowIndex, 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    }
+
+                        rowIndex++;
+                    }                        
                     
-                        int columnIndex = 1;                        
-
-                        for (int j = 0; j < row.Cells.Count; j++)
-                        {
-                            if (row.Cells[j].OwningColumn.HeaderText.Equals("Usuario"))
-                            {
-                                worksheet.Cell(rowIndex, 3).Value = ((Usuario)row.Cells[j].Value).User;
-                                worksheet.Cell(rowIndex, 3).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(rowIndex, 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                                rowCount++;
-                            }
-                            else if (row.Cells[j].OwningColumn.Visible)
-                            {
-                                worksheet.Cell(rowIndex, columnIndex).Value = row.Cells[j].Value.ToString();
-                                worksheet.Cell(rowIndex, columnIndex).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(rowIndex, columnIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                                columnIndex++;
-                                rowCount++;
-                            }
-                            else
-                            {
-                                columnIndex = columnIndex > 1 ? columnIndex-- : columnIndex;
-                            }
-                        }
-
-                        rowIndex++;
-                    }
-
                     worksheet.Columns("C").AdjustToContents();
                     worksheet.Columns("B").AdjustToContents();
                     worksheet.Columns("A").AdjustToContents();
+
+                    worksheet.Columns("A").Width = 17;
 
                     worksheet.Protect("masterkey", XLProtectionAlgorithm.Algorithm.SHA512);
 
                     workbook.SaveAs(Directory.GetCurrentDirectory() + $"\\Relatórios\\SAM RELATÓRIO - {DateTime.Today.ToLongDateString().ToUpper()}.xlsx");
 
-                    MessageBox.Show($"{exportSource.Count} linhas exportadas em relatório à pasta Relatórios", "Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
-        }
-        private void ExportToSheet2(dynamic exportSource)
-        {
-            try
-            {
-                using (var workbook = new XLWorkbook())
-                {
-                    int rowCount = 0;
-
-                    var worksheet = workbook.Worksheets.Add($"SAM RELATORIO");
-
-                    worksheet.Cell("A1").Value = "DATA";
-                    worksheet.Cell("A1").Style.Font.Bold = true;
-                    worksheet.Cell("A1").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    worksheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
-                    worksheet.Cell("B1").Value = "DESCRIÇÃO";
-                    worksheet.Cell("B1").Style.Font.Bold = true;
-                    worksheet.Cell("B1").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    worksheet.Cell("B1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
-                    worksheet.Cell("C1").Value = "USUÁRIO";
-                    worksheet.Cell("C1").Style.Font.Bold = true;
-                    worksheet.Cell("C1").Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    worksheet.Cell("C1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
-                    int rowIndex = 2;
-
-                    foreach (DataGridViewRow row in exportSource)
-                    {
-                        int columnIndex = 1;
-
-                        for (int j = 0; j < row.Cells.Count; j++)
-                        {
-                            if (row.Cells[j].OwningColumn.HeaderText.Equals("Usuario"))
-                            {
-                                worksheet.Cell(rowIndex, 3).Value = ((Usuario)row.Cells[j].Value).User;
-                                worksheet.Cell(rowIndex, 3).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(rowIndex, 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                                rowCount++;
-                            }
-                            else if (row.Cells[j].OwningColumn.Visible)
-                            {
-                                worksheet.Cell(rowIndex, columnIndex).Value = row.Cells[j].Value.ToString();
-                                worksheet.Cell(rowIndex, columnIndex).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(rowIndex, columnIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                                columnIndex++;
-                                rowCount++;
-                            }
-                            else
-                            {
-                                columnIndex = columnIndex > 1 ? columnIndex-- : columnIndex;
-                            }
-                        }
-
-                        rowIndex++;
-                    }
-
-                    worksheet.Columns("C").AdjustToContents();
-                    worksheet.Columns("B").AdjustToContents();
-                    worksheet.Columns("A").AdjustToContents();
-
-                    worksheet.Protect("masterkey", XLProtectionAlgorithm.Algorithm.SHA512);
-
-                    workbook.SaveAs(Directory.GetCurrentDirectory() + $"\\Relatórios\\SAM RELATÓRIO - {DateTime.Today.ToLongDateString().ToUpper()}.xlsx");
-
-                    MessageBox.Show($"{exportSource.Count} linhas exportadas em relatório à pasta Relatórios", "Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"{logs.Count} linhas exportadas em relatório à pasta Relatórios", "Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
