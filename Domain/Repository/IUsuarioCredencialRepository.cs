@@ -17,7 +17,7 @@ namespace Domain.Repository
         Task Remove(Usuario_Credential credential);
         Task RemoveAllFromUser(int userId);
         Task<List<Usuario_Credential>> GetUserCredentials(int userId);
-        Task<bool> CheckUserCredential(Credential credential, Usuario user);
+        Task<bool> CheckUserCredential(Credential credential, Usuario user);        
     }
     public class IUsuarioCredencialRepository : IUsuarioCredencialInterface
     {
@@ -45,13 +45,24 @@ namespace Domain.Repository
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
-        public async Task<bool> CheckUserCredential(Credential credential, Usuario user)
+        public async Task<bool> CheckUserCredential(Credential specificCredential, Usuario curUser)
         {
             try
             {
-                int userId = user.Id;
-                bool hasPermission = await _context.Usuario_Credential.Where(x => x.Id.Equals(userId) && x.Credential.Equals(credential)).FirstOrDefaultAsync() != null;
+                bool hasPermission = false;
+
+                List<Credential> allowedCredentials = new List<Credential> { Credential.Master, Credential.Total, specificCredential };
+                curUser.Credentials = (await GetUserCredentials(curUser.Id)).Select(x => x.Credential).ToList();
+
+                foreach (var credential in allowedCredentials)
+                {
+                    if (curUser.Credentials.Contains(credential))
+                    {
+                        hasPermission = true;
+                        break;
+                    }
+                }
+
                 return hasPermission;
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }

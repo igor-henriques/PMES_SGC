@@ -31,13 +31,13 @@ namespace PMES_SAM.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CautelaForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbBack = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -130,7 +130,7 @@ namespace PMES_SAM.Forms
             this.dtiPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtiPicker.Location = new System.Drawing.Point(67, 114);
             this.dtiPicker.Name = "dtiPicker";
-            this.dtiPicker.Size = new System.Drawing.Size(130, 23);
+            this.dtiPicker.Size = new System.Drawing.Size(130, 24);
             this.dtiPicker.TabIndex = 33;
             this.dtiPicker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dtiPicker_MouseDown);
             // 
@@ -161,7 +161,7 @@ namespace PMES_SAM.Forms
             this.dtfPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtfPicker.Location = new System.Drawing.Point(229, 114);
             this.dtfPicker.Name = "dtfPicker";
-            this.dtfPicker.Size = new System.Drawing.Size(130, 23);
+            this.dtfPicker.Size = new System.Drawing.Size(130, 24);
             this.dtfPicker.TabIndex = 33;
             this.dtfPicker.ValueChanged += new System.EventHandler(this.dtfPicker_ValueChanged);
             this.dtfPicker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dtiPicker_MouseDown);
@@ -294,14 +294,14 @@ namespace PMES_SAM.Forms
             this.dgvCautelas.BackgroundColor = System.Drawing.Color.White;
             this.dgvCautelas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCautelas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCautelas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCautelas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCautelas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCautelas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbGridId,
@@ -310,14 +310,14 @@ namespace PMES_SAM.Forms
             this.tbGridRetirada,
             this.tbGridDevolucao,
             this.btnGridItens});
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCautelas.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCautelas.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvCautelas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvCautelas.GridColor = System.Drawing.Color.White;
             this.dgvCautelas.Location = new System.Drawing.Point(0, 274);
@@ -339,8 +339,8 @@ namespace PMES_SAM.Forms
             // 
             // tbGridId
             // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tbGridId.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tbGridId.DefaultCellStyle = dataGridViewCellStyle2;
             this.tbGridId.HeaderText = "Id";
             this.tbGridId.Name = "tbGridId";
             this.tbGridId.ReadOnly = true;
@@ -350,8 +350,8 @@ namespace PMES_SAM.Forms
             // tbGridnumFunc
             // 
             this.tbGridnumFunc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tbGridnumFunc.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tbGridnumFunc.DefaultCellStyle = dataGridViewCellStyle3;
             this.tbGridnumFunc.HeaderText = "Funcional";
             this.tbGridnumFunc.Name = "tbGridnumFunc";
             this.tbGridnumFunc.ReadOnly = true;
@@ -360,8 +360,8 @@ namespace PMES_SAM.Forms
             // tbGridName
             // 
             this.tbGridName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tbGridName.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tbGridName.DefaultCellStyle = dataGridViewCellStyle4;
             this.tbGridName.HeaderText = "Nome";
             this.tbGridName.Name = "tbGridName";
             this.tbGridName.ReadOnly = true;
@@ -370,8 +370,8 @@ namespace PMES_SAM.Forms
             // tbGridRetirada
             // 
             this.tbGridRetirada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tbGridRetirada.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tbGridRetirada.DefaultCellStyle = dataGridViewCellStyle5;
             this.tbGridRetirada.HeaderText = "Retirada";
             this.tbGridRetirada.Name = "tbGridRetirada";
             this.tbGridRetirada.ReadOnly = true;
@@ -379,8 +379,8 @@ namespace PMES_SAM.Forms
             // tbGridDevolucao
             // 
             this.tbGridDevolucao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tbGridDevolucao.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tbGridDevolucao.DefaultCellStyle = dataGridViewCellStyle6;
             this.tbGridDevolucao.HeaderText = "Devolução";
             this.tbGridDevolucao.Name = "tbGridDevolucao";
             this.tbGridDevolucao.ReadOnly = true;
@@ -414,6 +414,7 @@ namespace PMES_SAM.Forms
             // 
             // CautelaForm
             // 
+            this.AccessibleName = "Cautelas";
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;

@@ -21,9 +21,10 @@ namespace PMES_SAM.Forms
         private Point lastLocation;
         ApplicationDbContext _context;
 
-        ILogInterface _log;
-        IMilitaryInterface militaries;
-        IUsuarioInterface users;
+        ILogInterface _logs;
+        IMilitaryInterface _militaries;
+        IUsuarioInterface _users;
+        IUsuarioCredencialInterface _credentials;
 
         public MilitaryForm(ApplicationDbContext context)
         {
@@ -31,9 +32,10 @@ namespace PMES_SAM.Forms
 
             _context = context;
 
-            militaries = new IMilitarRepository(_context);
-            users = new IUsuarioRepository(_context);
-            _log = new ILogRepository(_context);
+            _militaries = new IMilitarRepository(_context);
+            _users = new IUsuarioRepository(_context);
+            _logs = new ILogRepository(_context);
+            _credentials = new IUsuarioCredencialRepository(_context);
         }
         private void LoadComboBox()
         {
@@ -60,6 +62,12 @@ namespace PMES_SAM.Forms
             try
             {
                 #region CHECKINGS
+                if (!await _credentials.CheckUserCredential(Credential.DeleteMilitar, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvMilitaries.SelectedRows.Count <= 0)
                 {
                     MessageBox.Show("Selecione ao menos uma linha para excluir!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -87,17 +95,17 @@ namespace PMES_SAM.Forms
                         {
                             if (MessageBox.Show($"O usuário {curUser.User} foi encontrado atrelado a esse registro de militar. Caso prossiga com a exclusão, o usuário também será excluído. Deseja prosseguir?", "Excluindo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
                             {
-                                await users.Remove(curUser.Id);
-                                await militaries.Remove(id);
+                                await _users.Remove(curUser.Id);
+                                await _militaries.Remove(id);
 
-                                await _log.Add($"O militar {curUser.Militar.Nome}({curUser.Militar.Funcional}) foi REMOVIDO do sistema.");
-                                await _log.Add($"O usuário {curUser.User} foi REMOVIDO do sistema.");
+                                await _logs.Add($"O militar {curUser.Militar.Nome}({curUser.Militar.Funcional}) foi REMOVIDO do sistema.");
+                                await _logs.Add($"O usuário {curUser.User} foi REMOVIDO do sistema.");
                             }
                         }
                         else
                         {
-                            await militaries.Remove(id);
-                            await _log.Add($"O militar {curUser.Militar.Nome}({curUser.Militar.Funcional}) foi REMOVIDO do sistema.");
+                            await _militaries.Remove(id);
+                            await _logs.Add($"O militar {curUser.Militar.Nome}({curUser.Militar.Funcional}) foi REMOVIDO do sistema.");
                         }
                     }
 
@@ -140,11 +148,16 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.CreateMilitar, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if ((await _context.Militar.Where(x => x.Funcional.Equals(tbNumFunc.Text.Trim())).ToListAsync()).Count > 0)
                 {
                     MessageBox.Show("Já existe registro com este número funcional.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tbNumFunc.Focus();
-
                     return;
                 }
 
@@ -164,9 +177,9 @@ namespace PMES_SAM.Forms
                 militar.Funcional = tbNumFunc.Text.Trim();
                 militar.Curso = (Curso)cbCurso.SelectedIndex;
 
-                await militaries.Add(militar);
+                await _militaries.Add(militar);
                 await LoadTable();
-                await _log.Add($"O militar {militar.Nome}({militar.Funcional}) foi ADICIONADO ao sistema.");
+                await _logs.Add($"O militar {militar.Nome}({militar.Funcional}) foi ADICIONADO ao sistema.");
 
 
                 Clear();
@@ -181,6 +194,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.AlterMilitar, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvMilitaries.SelectedRows.Count > 0)
                 {
                     if (ableToEdit <= 0)
@@ -256,7 +275,7 @@ namespace PMES_SAM.Forms
                     militar.Curso = (Curso)cbCurso.SelectedIndex;
 
                     await _context.SaveChangesAsync();
-                    await _log.Add($"O militar {militar.Nome}({militar.Funcional}) foi ATUALIZADO no sistema.");
+                    await _logs.Add($"O militar {militar.Nome}({militar.Funcional}) foi ATUALIZADO no sistema.");
                 }
                 else
                 {
@@ -272,7 +291,7 @@ namespace PMES_SAM.Forms
                 dgvMilitaries.DataSource = null;
                 dgvMilitaries.Columns.Clear();
                 dgvMilitaries.Refresh();
-                dgvMilitaries.DataSource = await militaries.Get();
+                dgvMilitaries.DataSource = await _militaries.Get();
 
                 FormatColumns();
             }
@@ -445,21 +464,21 @@ namespace PMES_SAM.Forms
         {
             if (e.KeyCode.Equals(Keys.Enter))
             {
-                tbNumFunc.Focus();
+                btnSave.PerformClick();
             }
         }
         private void tbPel_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
             {
-                tbPin.Focus();
+                tbNumFunc.Focus();
             }
         }
         private void tbNumFunc_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
             {
-                btnSave.PerformClick();
+                tbPin.Focus();
             }
         }
 

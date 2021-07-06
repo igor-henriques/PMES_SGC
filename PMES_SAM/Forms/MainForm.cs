@@ -23,17 +23,20 @@ namespace PMES_SAM.Forms
     {
         private int currentRow;
         private Point lastLocation;
-
-        private ILogInterface _log;
+        
         private ApplicationDbContext _context;
         public ServiceProvider serviceProvider { get; set; }
         public Usuario loggedUser { get; set; }
+
         private IUsuarioCredencialInterface _credentials;
+        private ILogInterface _log;
+        private IUsuarioInterface _users;
 
         public MainForm()
         {
             InitializeComponent();
         }
+        
         private Form Menu(string tag)
         {
             Dictionary<string, Form> Menu = new Dictionary<string, Form>
@@ -45,7 +48,7 @@ namespace PMES_SAM.Forms
                 { "Nova Cautela", serviceProvider.GetRequiredService<NewCautelaForm>() }
             };
 
-            return Menu.Where(x => x.Key.ToUpper().Trim().Equals(tag.ToUpper().Trim())).FirstOrDefault().Value;
+            return Menu.Where(x => x.Key.ToUpper().Trim().Equals(tag.ToUpper().Trim())).FirstOrDefault().Value;            
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace PMES_SAM.Forms
             _context = serviceProvider.GetRequiredService<ApplicationDbContext>();
             _log = new ILogRepository(_context);
             _credentials = new IUsuarioCredencialRepository(_context);
+            _users = new IUsuarioRepository(_context);
 
             loggedUser.Credentials = (await _credentials.GetUserCredentials(loggedUser.Id)).Select(x => x.Credential).ToList();
 
@@ -101,6 +105,7 @@ namespace PMES_SAM.Forms
 
                 for (int i = 0; i < dgvMain.RowCount; i++)
                 {
+                
                     if (i % 2 == 0)
                     {
                         dgvMain.Rows[i].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -123,7 +128,18 @@ namespace PMES_SAM.Forms
             {
                 Form clickedMenuItem = Menu((string)e.ClickedItem.Tag);
 
-                if (clickedMenuItem != null) clickedMenuItem.ShowDialog();
+                if (clickedMenuItem != null)
+                {
+                    Credential credType = EnumHelper.LikeGetEnum<Credential>(clickedMenuItem.AccessibleName);
+                    if (await _credentials.CheckUserCredential(credType, loggedUser))
+                    {
+                        clickedMenuItem.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Você não possui permissão para acessar esse módulo.", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }                
 
                 await LoadTable();
 
@@ -157,14 +173,20 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.BackupDatabase, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (MessageBox.Show("Deseja realizar backup da base de dados?", "Fazendo backup...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
                 {
-                    if (!Directory.Exists("./backup/"))
+                    if (!Directory.Exists("./Backup/"))
                     {
-                        Directory.CreateDirectory("./backup/");
+                        Directory.CreateDirectory("./Backup/");
                     }
 
-                    string newFileName = $"./backup/sam_database_{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.sqlite";
+                    string newFileName = $"./Backup/sam_database_{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.sqlite";
 
                     if (File.Exists(newFileName))
                     {
@@ -216,7 +238,7 @@ namespace PMES_SAM.Forms
         {
             try
             {
-                var database = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\backup").GetFiles().OrderByDescending(f => f.LastWriteTime).LastOrDefault();
+                var database = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\Backup").GetFiles().OrderByDescending(f => f.LastWriteTime).LastOrDefault();
                 return database.FullName;
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
@@ -257,6 +279,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.ExportReport, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (MessageBox.Show("Deseja emitir um novo relatório?", "Emitindo Relatório...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
                 {
                     List<Log> source;
@@ -286,6 +314,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.ExportReport, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (MessageBox.Show("Deseja emitir novo relatório?", "Emitindo Relatório...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
                 {
                     if (dgvMain.SelectedRows.Count > 0)

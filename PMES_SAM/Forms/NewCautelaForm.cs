@@ -24,6 +24,8 @@ namespace PMES_SAM.Forms
         IMaterialInterface _material;
         ICautelaInterface _cautela;
         ICautelaMaterialInterface _cautelaMaterial;
+        IUsuarioInterface _users;
+        IUsuarioCredencialInterface _credentials;
         public NewCautelaForm(ApplicationDbContext context)
         {
             InitializeComponent();
@@ -33,6 +35,8 @@ namespace PMES_SAM.Forms
             _cautela = new ICautelaRepository(context);
             _cautelaMaterial = new ICautelaMaterialRepository(context);
             _log = new ILogRepository(_context);
+            _users = new IUsuarioRepository(_context);
+            _credentials = new IUsuarioCredencialRepository(_context);
         }
 
         private void pbBack_Click(object sender, EventArgs e)
@@ -40,10 +44,16 @@ namespace PMES_SAM.Forms
             Hide();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.PerformCautela, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 List<DataGridViewRow> rowsToRemove = new List<DataGridViewRow>();
 
                 foreach (DataGridViewRow row in dgvAvailableItems.SelectedRows)

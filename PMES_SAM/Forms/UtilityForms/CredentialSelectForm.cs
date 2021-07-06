@@ -23,6 +23,7 @@ namespace PMES_SAM.Forms.UtilityForms
         private ApplicationDbContext _context;
         private IUsuarioCredencialInterface _credentials;
         private ILogInterface _logs;
+        private IUsuarioInterface _users;
 
         public CredentialSelectForm(int userId, ApplicationDbContext _context)
         {
@@ -33,6 +34,7 @@ namespace PMES_SAM.Forms.UtilityForms
 
             _credentials = new IUsuarioCredencialRepository(_context);
             _logs = new ILogRepository(_context);
+            _users = new IUsuarioRepository(_context);
         }
         private List<Control> GetCredentialsTypes()
         {
@@ -84,12 +86,19 @@ namespace PMES_SAM.Forms.UtilityForms
 
             for (int i = 0; i < flowCbCredentials.Controls.Count; i++)
             {
+                Usuario curUser = await _users.Get(userId);
                 var userCredentials = await _credentials.GetUserCredentials(userId);
                 CheckBox curCheckbox = (CheckBox)flowCbCredentials.Controls[i];
                 Credential credential = (Credential)Enum.Parse(typeof(Credential), curCheckbox.Name);
 
                 if (curCheckbox.Checked)
                 {
+                    if (!await _credentials.CheckUserCredential(Credential.PerformCautela, await _users.GetLoggedUser()))
+                    {
+                        MessageBox.Show("Você não possui permissão para realizar essa operação.", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
+
                     if (!CredentialExists(userCredentials, credential))
                     {
                         await AddCredential(userId, credential);
@@ -100,6 +109,12 @@ namespace PMES_SAM.Forms.UtilityForms
                 }
                 else
                 {
+                    if (!await _credentials.CheckUserCredential(Credential.RemoveCredential, await _users.GetLoggedUser()))
+                    {
+                        MessageBox.Show("Você não possui permissão para realizar essa operação.", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
+
                     if (CredentialExists(userCredentials, credential))
                     {
                         var credentialToRemove = await _context.Usuario_Credential.Where(x => x.IdUsuario.Equals(userId) && x.Credential.Equals(credential)).FirstOrDefaultAsync();
@@ -134,7 +149,7 @@ namespace PMES_SAM.Forms.UtilityForms
                 await _credentials.Add(userCredential);
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
-        }
+        }        
         private bool CredentialExists(List<Usuario_Credential> credentials, Credential curCredential) => credentials.Select(x => x.Credential).Contains(curCredential) ? true : false;        
     }
 }

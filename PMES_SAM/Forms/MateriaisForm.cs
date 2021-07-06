@@ -2,6 +2,7 @@
 using Infra.Helpers;
 using Infra.Model;
 using Infra.Model.Data;
+using Infra.Model.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
@@ -21,6 +22,8 @@ namespace PMES_SAM.Forms
 
         ILogInterface _log;
         IMaterialInterface _material;
+        IUsuarioInterface _users;
+        IUsuarioCredencialInterface _credentials;
 
         public MateriaisForm(ApplicationDbContext context)
         {
@@ -29,6 +32,8 @@ namespace PMES_SAM.Forms
             _context = context;
             _material = new IMaterialRepository(context);
             _log = new ILogRepository(_context);
+            _users = new IUsuarioRepository(_context);
+            _credentials = new IUsuarioCredencialRepository(_context);
         }
         private void Clear()
         {
@@ -63,6 +68,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.CreateMaterial, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (!string.IsNullOrEmpty(tbName.Text.Trim()))
                 {
                     if (cbNoID.Checked)
@@ -99,6 +110,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.AlterMaterial, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvItems.SelectedRows.Count > 0)
                 {
                     if (ableToEdit <= 0)
@@ -183,7 +200,13 @@ namespace PMES_SAM.Forms
         private async void ctxDelete_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
+                if (!await _credentials.CheckUserCredential(Credential.DeleteMaterial, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvItems.SelectedRows.Count > 0)
                 {
                     if (MessageBox.Show($"Tem certeza que deseja excluir {dgvItems.SelectedRows.Count} registro(s)?", "Excluindo...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)

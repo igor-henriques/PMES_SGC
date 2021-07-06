@@ -25,6 +25,8 @@ namespace PMES_SAM.Forms
         ICautelaInterface _cautelas;
         IMilitaryInterface _militares;
         IMaterialInterface _materiais;
+        IUsuarioInterface _users;
+        IUsuarioCredencialRepository _credentials;
         ApplicationDbContext _context;
         public CautelaForm(ApplicationDbContext context)
         {
@@ -35,6 +37,8 @@ namespace PMES_SAM.Forms
             _militares = new IMilitarRepository(_context);
             _materiais = new IMaterialRepository(_context);
             _log = new ILogRepository(_context);
+            _users = new IUsuarioRepository(_context);
+            _credentials = new IUsuarioCredencialRepository(_context);
         }
 
         private async void CautelasForm_Load(object sender, EventArgs e)
@@ -155,6 +159,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.ReturnCautela, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvCautelas.SelectedRows.Count > 0)
                 {
                     if ((await _cautelas.Get(cautelaId)).DataDevolucao.Equals(default))

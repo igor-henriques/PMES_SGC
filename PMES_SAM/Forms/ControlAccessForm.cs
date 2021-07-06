@@ -142,6 +142,12 @@ namespace PMES_SAM.Forms
                     Militar selectedMilitar = await GetMilitarByString(cbMilitar.SelectedItem.ToString());
 
                     #region CHECKINGS
+                    if (!await _credentials.CheckUserCredential(Credential.CreateUser, await _users.GetLoggedUser()))
+                    {
+                        MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
+
                     if (_context.Usuario.Where(x => x.IdMilitar.Equals(selectedMilitar.Id)).FirstOrDefault() != null)
                     {
                         MessageBox.Show("Já existe registro de usuário deste militar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -161,7 +167,7 @@ namespace PMES_SAM.Forms
                         MessageBox.Show("A senha precisa ter ao menos 4 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         tbPassword.Focus();
                         return;
-                    }
+                    }                    
                     #endregion
 
                     Usuario user = new Usuario();
@@ -206,6 +212,12 @@ namespace PMES_SAM.Forms
 
                     if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                     {
+                        if (!await _credentials.CheckUserCredential(Credential.AccessCredential, await _users.GetLoggedUser()))
+                        {
+                            MessageBox.Show("Você não possui permissão para acessar esse módulo.", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            return;
+                        }
+
                         CredentialSelectForm credentialsForm = new CredentialSelectForm(userId, _context);
                         credentialsForm.ShowDialog();
                     }
@@ -256,6 +268,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.DeleteUser, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação.", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvUsers.SelectedRows.Count > 0)
                 {
                     if (MessageBox.Show($"Tem certeza que deseja excluir {dgvUsers.SelectedRows.Count} registro(s)?", "Excluindo...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
@@ -324,6 +342,12 @@ namespace PMES_SAM.Forms
         {
             try
             {
+                if (!await _credentials.CheckUserCredential(Credential.AlterUser, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação.", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 if (dgvUsers.SelectedRows.Count > 0)
                 {
                     if (ableToEdit <= 0)

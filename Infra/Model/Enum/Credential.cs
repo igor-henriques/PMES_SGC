@@ -17,6 +17,12 @@ namespace Infra.Model.Enum
         AlterUser,
         [Description("Excluir Usuário")]
         DeleteUser,
+        [Description("Acessar Permissões")]
+        AccessCredential,
+        [Description("Conceder Permissão")]
+        AddCredential,
+        [Description("Remover Permissão")]
+        RemoveCredential,
         #endregion
         #region MATERIAL
         [Description("Acessar Materiais")]

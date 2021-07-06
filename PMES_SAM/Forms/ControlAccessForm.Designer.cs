@@ -416,6 +416,7 @@ namespace PMES_SAM.Forms
             // 
             // ControlAccessForm
             // 
+            this.AccessibleName = "Usuários";
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
