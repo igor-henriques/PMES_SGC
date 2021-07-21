@@ -16,5 +16,6 @@ namespace Infra.Model
         [ForeignKey("Material")]
         public int IdMaterial { get; set; }
         public Material Material { get; set; }
+        public int MaterialAmount { get; set; }
     }
 }

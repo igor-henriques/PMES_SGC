@@ -12,8 +12,9 @@ namespace Domain.Repository
 {
     public interface ILogInterface
     {
-        Task Add(string description);
+        Task<bool> Add(string description);
         Task<List<Log>> Get();
+        Task Remove(List<Log> logs);
     }
     public class ILogRepository : ILogInterface
     {
@@ -32,7 +33,7 @@ namespace Domain.Repository
 
             return default;
         }
-        public async Task Add(string description)
+        public async Task<bool> Add(string description)
         {
             try
             {
@@ -47,9 +48,13 @@ namespace Domain.Repository
 
                     await _context.Log.AddAsync(log);
                     await _context.SaveChangesAsync();
+
+                    return true;
                 }                
             }
-            catch (Exception ex) { LogWriter.Write(ex.ToString()); }            
+            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+
+            return false;
         }
 
         public async Task<List<Log>> Get()
@@ -61,6 +66,21 @@ namespace Domain.Repository
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
 
             return default;
+        }
+
+        public async Task Remove(List<Log> logs)
+        {
+            try
+            {
+                logs.Select(x => x.Id)
+                    .ToList()
+                    .ForEach(async x => _context.Log
+                    .Remove((await _context.Log
+                    .FindAsync(x))));
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
     }
 }

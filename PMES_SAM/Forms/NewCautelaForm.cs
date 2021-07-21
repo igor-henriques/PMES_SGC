@@ -4,6 +4,7 @@ using Infra.Model;
 using Infra.Model.Data;
 using Infra.Model.Enum;
 using Microsoft.EntityFrameworkCore;
+using PMES_SAM.Forms.UtilityForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace PMES_SAM.Forms
         IUsuarioInterface _users;
         IUsuarioCredencialInterface _credentials;
         public NewCautelaForm(ApplicationDbContext context)
-        {
+        {            
             InitializeComponent();
 
             _context = context;
@@ -38,12 +39,10 @@ namespace PMES_SAM.Forms
             _users = new IUsuarioRepository(_context);
             _credentials = new IUsuarioCredencialRepository(_context);
         }
-
         private void pbBack_Click(object sender, EventArgs e)
         {
             Hide();
         }
-
         private async void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -65,11 +64,46 @@ namespace PMES_SAM.Forms
                             Id = id,
                             Code = row.Cells[2].Value.ToString(),
                             Nome = row.Cells[1].Value.ToString(),
-                            Status = (Status)row.Cells[3].Value
+                            Count = int.Parse(row.Cells[3].Value.ToString())
                         };
 
-                        dgvItemsCautelados.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Status });
-                        rowsToRemove.Add(row);
+                        if (curMat.Count > 1)
+                        {
+                            AmountSelectForm selectCount = new AmountSelectForm(curMat);
+                            selectCount.ShowDialog();
+
+                            if (selectCount.Amount > 0)
+                            {
+                                int index = GetIndexMaterialOnGrid(dgvItemsCautelados, curMat);
+                                if (index > -1)
+                                {
+                                    dgvItemsCautelados.Rows[index].Cells[3].Value = (int)dgvItemsCautelados.Rows[index].Cells[3].Value + selectCount.Amount;
+                                }
+                                else
+                                {
+                                    dgvItemsCautelados.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, selectCount.Amount });
+                                }
+
+                                row.Cells[3].Value = (int)row.Cells[3].Value - selectCount.Amount;
+
+                                if ((int)row.Cells[3].Value <= 0)
+                                    rowsToRemove.Add(row);
+                            }                            
+                        }
+                        else if (curMat.Count.Equals(1) || curMat.IsUnique)
+                        {
+                            int index = GetIndexMaterialOnGrid(dgvItemsCautelados, curMat);
+                            if (index > -1)
+                            {
+                                dgvItemsCautelados.Rows[index].Cells[3].Value = (int)dgvItemsCautelados.Rows[index].Cells[3].Value + 1;
+                            }
+                            else
+                            {
+                                dgvItemsCautelados.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Count });
+                            }
+                            
+                            rowsToRemove.Add(row);
+                        }
                     }
                 }
 
@@ -79,7 +113,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
@@ -95,10 +128,19 @@ namespace PMES_SAM.Forms
                             Id = id,
                             Code = row.Cells[2].Value.ToString(),
                             Nome = row.Cells[1].Value.ToString(),
-                            Status = (Status)row.Cells[3].Value
+                            Count = int.Parse(row.Cells[3].Value.ToString())
                         };
 
-                        dgvAvailableItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Status });
+                        int index = GetIndexMaterialOnGrid(dgvAvailableItems, curMat);
+                        if (index > -1)
+                        {
+                            dgvAvailableItems.Rows[index].Cells[3].Value = (int)dgvAvailableItems.Rows[index].Cells[3].Value + curMat.Count;
+                        }
+                        else
+                        {
+                            dgvAvailableItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Count });
+                        }
+                        
                         rowsToRemove.Add(row);
                     }
                 }
@@ -109,7 +151,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private async void btnCautelar_Click(object sender, EventArgs e)
         {
             try
@@ -140,8 +181,10 @@ namespace PMES_SAM.Forms
 
                 if (curMilitar.PIN.Equals(Cryptography.GetMD5(tbPIN.Text.Trim())))
                 {
-                    if (MessageBox.Show(BuildTextMessage(curMilitar), "Militar Encontrado", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
+                    if (MessageBox.Show(BuildTextMessage(curMilitar).ToUpper(), "Militar Encontrado", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
                     {
+                        List<string> logResult = new List<string>();
+
                         Cautela cautela = new Cautela
                         {
                             DataRetirada = DateTime.Now,
@@ -151,9 +194,12 @@ namespace PMES_SAM.Forms
                         };
 
                         Cautela fromDbCautela = await _cautela.Add(cautela);
-
-                        await _cautelaMaterial.Add(fromDbCautela);
-                        await _log.Add($"O militar {curMilitar.Nome}({curMilitar.Funcional}) realizou CAUTELA dos materiais: {string.Join(", ", cautela.Materiais.Select(x => x.Code))}");
+                        if (fromDbCautela != null)
+                        {                            
+                            await _cautelaMaterial.Add(fromDbCautela);
+                            (await _cautelaMaterial.GetListMaterials(fromDbCautela.Id)).ForEach(curMat => logResult.Add($"{curMat.Material.Code} - {curMat.Material.Nome}({curMat.MaterialAmount}x)"));
+                            await _log.Add($"O militar {curMilitar.Nome}({curMilitar.Funcional}) realizou CAUTELA dos materiais: {string.Join(", ", logResult)}");
+                        }                                                
 
                         await LoadTable();
                         dgvItemsCautelados.Rows.Clear();
@@ -196,7 +242,7 @@ namespace PMES_SAM.Forms
                             Id = id,
                             Code = row.Cells[2].Value.ToString(),
                             Nome = row.Cells[1].Value.ToString(),
-                            Status = (Status)row.Cells[3].Value
+                            Count = int.Parse(row.Cells[3].Value.ToString())
                         });
                     }
                 }
@@ -216,14 +262,14 @@ namespace PMES_SAM.Forms
         {
             try
             {
-                List<Material> availableMaterials = (await _material.Get()).Where(x => x.Status.Equals(Infra.Model.Enum.Status.Disponível)).ToList();
+                List<Material> availableMaterials = (await _material.Get()).Where(x => x.Count > 0).ToList();
 
                 AutoCompleteStringCollection funcionalAutoComplete = new AutoCompleteStringCollection();
                 (await _context.Militar.Select(x => x.Funcional).ToListAsync()).ForEach(funcional => funcionalAutoComplete.Add(funcional.ToString()));
                 tbNumFunc.AutoCompleteCustomSource = funcionalAutoComplete;
 
                 dgvAvailableItems.Rows.Clear();
-                availableMaterials.ForEach(curMat => dgvAvailableItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Status }));
+                availableMaterials.ForEach(curMat => dgvAvailableItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Count }));
 
                 Clear();
                 FormatFirstDGV();
@@ -247,13 +293,14 @@ namespace PMES_SAM.Forms
         public void FormatFirstDGV()
         {
             dgvAvailableItems.Columns[0].Visible = false;
-            dgvAvailableItems.Columns[3].Visible = false;
 
             dgvAvailableItems.Columns[1].HeaderText = "Nome";
-            dgvAvailableItems.Columns[2].HeaderText = "Identificador";
+            dgvAvailableItems.Columns[2].HeaderText = "Código";
+            dgvAvailableItems.Columns[3].HeaderText = "Qnt";
 
             dgvAvailableItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvAvailableItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvAvailableItems.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             for (int i = 0; i < dgvAvailableItems.RowCount; i++)
             {
@@ -270,13 +317,14 @@ namespace PMES_SAM.Forms
         public void FormatSecondDGV()
         {
             dgvItemsCautelados.Columns[0].Visible = false;
-            dgvItemsCautelados.Columns[3].Visible = false;
 
             dgvItemsCautelados.Columns[1].HeaderText = "Nome";
-            dgvItemsCautelados.Columns[2].HeaderText = "Identificador";
+            dgvItemsCautelados.Columns[2].HeaderText = "Código";
+            dgvItemsCautelados.Columns[3].HeaderText = "Qnt";
 
             dgvItemsCautelados.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvItemsCautelados.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvItemsCautelados.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             for (int i = 0; i < dgvItemsCautelados.RowCount; i++)
             {
@@ -290,34 +338,60 @@ namespace PMES_SAM.Forms
                 }
             }
         }
-
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
             try
             {
                 tbSearch.Clear();
-
-                List<Material> availableMaterials = (await _material.Get()).Where(x => x.Status.Equals(Infra.Model.Enum.Status.Disponível)).ToList();
-                List<Material> takenMaterials = new List<Material>();                
-
-                foreach (DataGridViewRow row in dgvItemsCautelados.Rows)
-                {
-                    takenMaterials.Add(new Material
-                    {
-                        Id = int.Parse(row.Cells[0].Value.ToString()),
-                        Code = row.Cells[2].Value.ToString(),
-                        Nome = row.Cells[1].Value.ToString(),
-                        Status = (Status)row.Cells[3].Value
-                    });
-                }
-
                 dgvAvailableItems.Rows.Clear();
 
-                takenMaterials.Select(x => x.Id).ToList().ForEach(id => availableMaterials.RemoveAll(x => x.Id == id));
+                List<Material> availableMaterials = await GetWithoutLastro();
+                List<Material> takenMaterials = GetItemsCauteladosOnGrid();
 
-                availableMaterials.ForEach(curMat => dgvAvailableItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Status }));
+                for (int i = 0; i < availableMaterials.Count; i++)
+                {
+                    var curTakenMat = takenMaterials.Where(x => availableMaterials[i].Id.Equals(x.Id)).FirstOrDefault();
+
+                    if (curTakenMat != null)
+                    {
+                        if (curTakenMat.Count > 1)
+                        {
+                            availableMaterials[i].Count -= curTakenMat.Count;
+
+                            if (availableMaterials[i].Count <= 0)
+                            {
+                                availableMaterials[i] = null;
+                            }
+                        }
+                        else
+                        {
+                            availableMaterials[i] = null;
+                        }
+                    }                    
+                }
+
+                availableMaterials = availableMaterials.Where(x => x != null).ToList();
+                availableMaterials.ForEach(curMat => dgvAvailableItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Count }));
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+        }
+        private async Task<List<Material>> GetWithoutLastro()
+        {
+            List<Material> availableMaterials = (await _material.Get()).Where(x => x.Count > 0).ToList();
+            List<Material> newObject = new List<Material>();
+
+            foreach (var mat in availableMaterials)
+            {
+                newObject.Add(new Material
+                {
+                    Id = mat.Id,
+                    Code = mat.Code,
+                    Nome = mat.Nome,
+                    Count = mat.Count
+                });
+            }
+
+            return newObject;
         }
         private void tbNumFunc_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -345,7 +419,6 @@ namespace PMES_SAM.Forms
                 e.Handled = true;
             }
         }
-
         private void tbNumFunc_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
@@ -353,7 +426,6 @@ namespace PMES_SAM.Forms
                 tbPIN.Focus();
             }
         }
-
         private void tbPIN_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
@@ -361,7 +433,6 @@ namespace PMES_SAM.Forms
                 btnCautelar.PerformClick();
             }
         }
-
         private void tbSearch_KeyUp(object sender, KeyEventArgs e)
         {
             try
@@ -376,11 +447,14 @@ namespace PMES_SAM.Forms
 
                     foreach (var material in foundMaterials.ToList())
                     {
-                        dgvAvailableItems.Rows.Add(new object[] { material.Id, material.Nome, material.Code, material.Status });
+                        dgvAvailableItems.Rows.Add(new object[] { material.Id, material.Nome, material.Code, material.Count });
                     }
 
                     if (dgvAvailableItems.Rows.Count > 0)
+                    {
+                        dgvAvailableItems.ClearSelection();
                         dgvAvailableItems.Rows[dgvAvailableItems.Rows.Count - 1].Selected = true;
+                    }                        
 
                     FormatFirstDGV();
                 }
@@ -404,7 +478,7 @@ namespace PMES_SAM.Forms
                         Id = int.Parse(row.Cells[0].Value.ToString()),
                         Code = row.Cells[2].Value.ToString(),
                         Nome = row.Cells[1].Value.ToString(),
-                        Status = (Status)row.Cells[3].Value
+                        Count = int.Parse(row.Cells[3].Value.ToString())
                     });
                 }
 
@@ -414,7 +488,39 @@ namespace PMES_SAM.Forms
 
             return default;
         }
+        private List<Material> GetItemsCauteladosOnGrid()
+        {
+            try
+            {
+                List<Material> availableMaterials = new List<Material>();
 
+                foreach (DataGridViewRow row in dgvItemsCautelados.Rows)
+                {
+                    availableMaterials.Add(new Material
+                    {
+                        Id = int.Parse(row.Cells[0].Value.ToString()),
+                        Code = row.Cells[2].Value.ToString(),
+                        Nome = row.Cells[1].Value.ToString(),
+                        Count = int.Parse(row.Cells[3].Value.ToString())
+                    });
+                }
+
+                return availableMaterials;
+            }
+            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+
+            return default;
+        }
+        private int GetIndexMaterialOnGrid(DataGridView dgv, Material curMat)
+        {
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                if ((int)dgv.Rows[i].Cells[0].Value == curMat.Id)
+                    return i;
+            }
+
+            return -1;
+        }
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
@@ -422,7 +528,6 @@ namespace PMES_SAM.Forms
                 btnAdd.PerformClick();
             }
         }
-
         private void dgvAvailableItems_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
@@ -436,6 +541,14 @@ namespace PMES_SAM.Forms
             {
                 pbBack_Click(null, null);
                 return true;
+            }
+            else if (keyData == Keys.F2)
+            {
+                btnRemove.PerformClick();
+            }
+            else if (keyData == Keys.F1)
+            {
+                btnAdd.PerformClick();
             }
 
             return base.ProcessCmdKey(ref msg, keyData);

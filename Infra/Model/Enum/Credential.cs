@@ -58,7 +58,9 @@ namespace Infra.Model.Enum
         [Description("Exportar Relatório Full")]
         ExportFullReport,
         [Description("Backup do Banco de Dados")]
-        BackupDatabase
+        BackupDatabase,
+        [Description("Remover Log")]
+        DeleteLogs
         #endregion
     }
 }

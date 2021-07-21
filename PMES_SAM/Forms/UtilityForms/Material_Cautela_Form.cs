@@ -1,5 +1,7 @@
-﻿using Infra.Helpers;
+﻿using Domain.Repository;
+using Infra.Helpers;
 using Infra.Model;
+using Infra.Model.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,25 +11,30 @@ namespace PMES_SAM.Forms
 {
     public partial class Material_Cautela_Form : Form
     {
-        private List<Material> _materiais;
+        private int idCautela { get; set; }
+        private ICautelaMaterialInterface _cautelaMaterial { get; set; }
+        private ApplicationDbContext _context { get; set; }
 
-        public Material_Cautela_Form(List<Material> materiais)
+        public Material_Cautela_Form(int idCautela, ApplicationDbContext _context)
         {
             InitializeComponent();
 
-            _materiais = materiais;
+            this.idCautela = idCautela;
+            this._context = _context;
+            this._cautelaMaterial = new ICautelaMaterialRepository(_context);
         }
 
         private void Material_Cautela_Form_Load(object sender, EventArgs e)
         {
             LoadTable();
         }
-        private void LoadTable()
+        private async void LoadTable()
         {
             try
             {
                 dgvItems.Rows.Clear();
-                _materiais.ForEach(curMat => dgvItems.Rows.Add(new object[] { curMat.Id, curMat.Nome, curMat.Code, curMat.Status}));
+
+                (await _cautelaMaterial.GetListMaterials(idCautela)).ForEach(curMat => dgvItems.Rows.Add(new object[] { curMat.Id, curMat.Material.Nome, curMat.Material.Code, curMat.MaterialAmount }));                
 
                 FormatColumns();
             }

@@ -53,8 +53,10 @@ namespace PMES_SAM.Forms
             this.ctxUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cbNoID = new System.Windows.Forms.CheckBox();
+            this.tbAmount = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.cbUnique = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -63,6 +65,7 @@ namespace PMES_SAM.Forms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.ctxMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -152,10 +155,10 @@ namespace PMES_SAM.Forms
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Caviar Dreams", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(550, 107);
+            this.btnDelete.Location = new System.Drawing.Point(538, 107);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(181, 55);
-            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Size = new System.Drawing.Size(193, 55);
+            this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = " Excluir";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -171,7 +174,7 @@ namespace PMES_SAM.Forms
             this.btnEdit.Location = new System.Drawing.Point(349, 107);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(203, 55);
-            this.btnEdit.TabIndex = 8;
+            this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "  Editar";
             this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -187,7 +190,7 @@ namespace PMES_SAM.Forms
             this.btnSave.Location = new System.Drawing.Point(0, 107);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(351, 55);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "   Salvar";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -201,7 +204,7 @@ namespace PMES_SAM.Forms
             this.rbCode.Location = new System.Drawing.Point(156, 526);
             this.rbCode.Name = "rbCode";
             this.rbCode.Size = new System.Drawing.Size(64, 19);
-            this.rbCode.TabIndex = 4;
+            this.rbCode.TabIndex = 9;
             this.rbCode.Text = "Código";
             this.rbCode.UseVisualStyleBackColor = true;
             // 
@@ -213,7 +216,7 @@ namespace PMES_SAM.Forms
             this.rbName.Location = new System.Drawing.Point(15, 526);
             this.rbName.Name = "rbName";
             this.rbName.Size = new System.Drawing.Size(123, 19);
-            this.rbName.TabIndex = 3;
+            this.rbName.TabIndex = 8;
             this.rbName.TabStop = true;
             this.rbName.Text = "Nome do Material";
             this.rbName.UseVisualStyleBackColor = true;
@@ -227,7 +230,7 @@ namespace PMES_SAM.Forms
             this.btnUpdate.Location = new System.Drawing.Point(698, 525);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(20, 20);
-            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.TabIndex = 11;
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -240,7 +243,7 @@ namespace PMES_SAM.Forms
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.PlaceholderText = "Pesquisar";
             this.tbSearch.Size = new System.Drawing.Size(429, 20);
-            this.tbSearch.TabIndex = 5;
+            this.tbSearch.TabIndex = 10;
             this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
             // 
             // pictureBox6
@@ -254,32 +257,35 @@ namespace PMES_SAM.Forms
             // 
             // tbName
             // 
+            this.tbName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.tbName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbName.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbName.Location = new System.Drawing.Point(15, 84);
+            this.tbName.Location = new System.Drawing.Point(84, 84);
             this.tbName.Name = "tbName";
             this.tbName.PlaceholderText = "Nome do Material";
-            this.tbName.Size = new System.Drawing.Size(505, 20);
-            this.tbName.TabIndex = 1;
+            this.tbName.Size = new System.Drawing.Size(429, 20);
+            this.tbName.TabIndex = 2;
             this.toolTip1.SetToolTip(this.tbName, "Nome do Material");
             this.tbName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbName_KeyDown);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 106);
+            this.pictureBox1.Location = new System.Drawing.Point(84, 106);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(505, 1);
+            this.pictureBox1.Size = new System.Drawing.Size(429, 1);
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Black;
-            this.pictureBox2.Location = new System.Drawing.Point(538, 106);
+            this.pictureBox2.Location = new System.Drawing.Point(631, 106);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(116, 1);
+            this.pictureBox2.Size = new System.Drawing.Size(86, 1);
             this.pictureBox2.TabIndex = 36;
             this.pictureBox2.TabStop = false;
             // 
@@ -287,13 +293,14 @@ namespace PMES_SAM.Forms
             // 
             this.tbID.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbID.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbID.Location = new System.Drawing.Point(538, 84);
+            this.tbID.Location = new System.Drawing.Point(631, 84);
             this.tbID.Name = "tbID";
-            this.tbID.PlaceholderText = "Identificador";
-            this.tbID.Size = new System.Drawing.Size(116, 20);
-            this.tbID.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.tbID, "Identificador");
+            this.tbID.PlaceholderText = "Código";
+            this.tbID.Size = new System.Drawing.Size(86, 20);
+            this.tbID.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.tbID, "Código");
             this.tbID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbID_KeyDown);
             // 
             // ctxMenu
@@ -327,28 +334,50 @@ namespace PMES_SAM.Forms
             this.ctxDelete.ToolTipText = "Deleta permanentemente o registro selecionado";
             this.ctxDelete.Click += new System.EventHandler(this.ctxDelete_Click);
             // 
-            // cbNoID
+            // tbAmount
             // 
-            this.cbNoID.AutoSize = true;
-            this.cbNoID.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbNoID.Location = new System.Drawing.Point(671, 86);
-            this.cbNoID.Name = "cbNoID";
-            this.cbNoID.Size = new System.Drawing.Size(53, 24);
-            this.cbNoID.TabIndex = 38;
-            this.cbNoID.Text = "S/N";
-            this.toolTip1.SetToolTip(this.cbNoID, "Marque caso o atual item não tenha identificador");
-            this.cbNoID.UseVisualStyleBackColor = true;
-            this.cbNoID.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbNoID_MouseDown);
+            this.tbAmount.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbAmount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAmount.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbAmount.Location = new System.Drawing.Point(530, 84);
+            this.tbAmount.Name = "tbAmount";
+            this.tbAmount.PlaceholderText = "Quantia";
+            this.tbAmount.Size = new System.Drawing.Size(86, 20);
+            this.tbAmount.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.tbAmount, "Quantia");
+            this.tbAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbAmount_KeyDown);
+            this.tbAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAmount_KeyPress);
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(233, 523);
+            this.pictureBox3.Location = new System.Drawing.Point(233, 524);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Black;
+            this.pictureBox4.Location = new System.Drawing.Point(530, 106);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(86, 1);
+            this.pictureBox4.TabIndex = 41;
+            this.pictureBox4.TabStop = false;
+            // 
+            // cbUnique
+            // 
+            this.cbUnique.AutoSize = true;
+            this.cbUnique.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbUnique.Location = new System.Drawing.Point(12, 84);
+            this.cbUnique.Name = "cbUnique";
+            this.cbUnique.Size = new System.Drawing.Size(66, 24);
+            this.cbUnique.TabIndex = 1;
+            this.cbUnique.Text = "Único";
+            this.cbUnique.UseVisualStyleBackColor = true;
+            this.cbUnique.CheckedChanged += new System.EventHandler(this.cbUnique_CheckedChanged);
             // 
             // MateriaisForm
             // 
@@ -359,9 +388,11 @@ namespace PMES_SAM.Forms
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(731, 555);
             this.ControlBox = false;
+            this.Controls.Add(this.tbAmount);
+            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.dgvItems);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.cbNoID);
             this.Controls.Add(this.tbID);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.tbName);
@@ -371,10 +402,10 @@ namespace PMES_SAM.Forms
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.cbUnique);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MateriaisForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -388,6 +419,7 @@ namespace PMES_SAM.Forms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ctxMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,7 +447,9 @@ namespace PMES_SAM.Forms
         private System.Windows.Forms.ToolStripMenuItem ctxUpdate;
         private System.Windows.Forms.ToolStripMenuItem ctxDelete;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox cbNoID;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TextBox tbAmount;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.CheckBox cbUnique;
     }
 }

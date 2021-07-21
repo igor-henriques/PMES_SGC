@@ -15,6 +15,18 @@ namespace Infra.Model
         [MaxLength(50)]
         public string Code { get; set; }
         [Required]
-        public Status Status { get; set; }
+        public int Count { get; set; }
+        public bool IsUnique { get; set; }
+
+        public static Material Clone(Material source)
+        {
+            return new Material
+            {
+                Nome = source.Nome,
+                Code = source.Code,
+                Count = source.Count,
+                IsUnique = source.IsUnique
+            };
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace PMES_SAM.Forms.UtilityForms
     public partial class AmountSelectForm : Form
     {
         public Material curMat { get; set; }
-        public int Amount { get; set; } = 1;
+        public int Amount { get; set; } = 0;
 
         public AmountSelectForm(Material curMat)
         {
@@ -20,15 +20,15 @@ namespace PMES_SAM.Forms.UtilityForms
         {            
             Amount = int.Parse(tbAmount.Text);
 
-            /*if (Amount <= curMat.AmountAvailable)
+            if (Amount <= curMat.Count)
             {
                 Close();
             }
             else
             {
-                MessageBox.Show($"Não é possível cautelar quantidade maior que a disponível.\nQuantia disponível: {curMat.Amount}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Amount = 1;
-            }*/
+                MessageBox.Show($"Não é possível cautelar quantidade maior que a disponível.\nQuantia disponível: {curMat.Count}", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Amount = 0;
+            }
         }
 
         private void tbAmount_KeyPress(object sender, KeyPressEventArgs e)

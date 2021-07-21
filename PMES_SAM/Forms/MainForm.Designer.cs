@@ -64,6 +64,7 @@ namespace PMES_SAM.Forms
             this.dgvMain = new System.Windows.Forms.DataGridView();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctxExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDeleteLog = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -389,9 +390,10 @@ namespace PMES_SAM.Forms
             // 
             this.ctxMenu.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ctxExport});
+            this.ctxExport,
+            this.btnDeleteLog});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(128, 26);
+            this.ctxMenu.Size = new System.Drawing.Size(181, 70);
             this.ctxMenu.Text = "Menu";
             // 
             // ctxExport
@@ -399,10 +401,18 @@ namespace PMES_SAM.Forms
             this.ctxExport.Image = ((System.Drawing.Image)(resources.GetObject("ctxExport.Image")));
             this.ctxExport.Name = "ctxExport";
             this.ctxExport.ShowShortcutKeys = false;
-            this.ctxExport.Size = new System.Drawing.Size(127, 22);
+            this.ctxExport.Size = new System.Drawing.Size(180, 22);
             this.ctxExport.Text = "Exportar";
             this.ctxExport.ToolTipText = "Exporta as linhas selecionadas em arquivo";
             this.ctxExport.Click += new System.EventHandler(this.ctxExport_Click);
+            // 
+            // btnDeleteLog
+            // 
+            this.btnDeleteLog.Image = global::PMES_SAM.Properties.Resources.close_button;
+            this.btnDeleteLog.Name = "btnDeleteLog";
+            this.btnDeleteLog.Size = new System.Drawing.Size(180, 22);
+            this.btnDeleteLog.Text = "Excluir";
+            this.btnDeleteLog.Click += new System.EventHandler(this.btnDeleteLog_Click);
             // 
             // MainForm
             // 
@@ -424,6 +434,7 @@ namespace PMES_SAM.Forms
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Controle Administrativo - Principal - Seção de Armamento";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
@@ -472,6 +483,7 @@ namespace PMES_SAM.Forms
         private System.Windows.Forms.ToolStripStatusLabel lblSeparator3;
         private System.Windows.Forms.ToolStripStatusLabel LogsDesc;
         private System.Windows.Forms.ToolStripStatusLabel logsCount;
+        private System.Windows.Forms.ToolStripMenuItem btnDeleteLog;
     }
 }
 

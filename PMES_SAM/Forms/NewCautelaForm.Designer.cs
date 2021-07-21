@@ -32,22 +32,26 @@ namespace PMES_SAM.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewCautelaForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbBack = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvAvailableItems = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTbId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTbName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTbIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTbAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvItemsCautelados = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._dgvTbAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -130,18 +134,18 @@ namespace PMES_SAM.Forms
             this.dgvAvailableItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAvailableItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAvailableItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAvailableItems.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTbId,
+            this.dgvTbName,
+            this.dgvTbIdentificador,
+            this.dgvTbAmount});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAvailableItems.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAvailableItems.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvAvailableItems.GridColor = System.Drawing.Color.White;
             this.dgvAvailableItems.Location = new System.Drawing.Point(15, 109);
@@ -160,33 +164,38 @@ namespace PMES_SAM.Forms
             this.dgvAvailableItems.TabIndex = 13;
             this.dgvAvailableItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvAvailableItems_KeyDown);
             // 
-            // dataGridViewTextBoxColumn1
+            // dgvTbId
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dgvTbId.HeaderText = "Id";
+            this.dgvTbId.Name = "dgvTbId";
+            this.dgvTbId.ReadOnly = true;
+            this.dgvTbId.Visible = false;
             // 
-            // dataGridViewTextBoxColumn2
+            // dgvTbName
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dgvTbName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvTbName.HeaderText = "Nome";
+            this.dgvTbName.Name = "dgvTbName";
+            this.dgvTbName.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // dgvTbIdentificador
             // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Identificador";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dgvTbIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvTbIdentificador.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTbIdentificador.HeaderText = "Identificador";
+            this.dgvTbIdentificador.Name = "dgvTbIdentificador";
+            this.dgvTbIdentificador.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn4
+            // dgvTbAmount
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Status";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
+            this.dgvTbAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvTbAmount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvTbAmount.HeaderText = "Quantia";
+            this.dgvTbAmount.Name = "dgvTbAmount";
+            this.dgvTbAmount.ReadOnly = true;
+            this.dgvTbAmount.Width = 86;
             // 
             // dgvItemsCautelados
             // 
@@ -197,28 +206,28 @@ namespace PMES_SAM.Forms
             this.dgvItemsCautelados.BackgroundColor = System.Drawing.Color.White;
             this.dgvItemsCautelados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvItemsCautelados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemsCautelados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItemsCautelados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvItemsCautelados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItemsCautelados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.Nome,
             this.Code,
-            this.Status});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvItemsCautelados.DefaultCellStyle = dataGridViewCellStyle4;
+            this._dgvTbAmount});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItemsCautelados.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvItemsCautelados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvItemsCautelados.GridColor = System.Drawing.Color.White;
             this.dgvItemsCautelados.Location = new System.Drawing.Point(414, 109);
@@ -254,17 +263,22 @@ namespace PMES_SAM.Forms
             // Code
             // 
             this.Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Code.DefaultCellStyle = dataGridViewCellStyle6;
             this.Code.HeaderText = "Identificador";
             this.Code.Name = "Code";
             this.Code.ReadOnly = true;
             this.Code.ToolTipText = "Identificador Único do material";
             // 
-            // Status
+            // _dgvTbAmount
             // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Visible = false;
+            this._dgvTbAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this._dgvTbAmount.DefaultCellStyle = dataGridViewCellStyle7;
+            this._dgvTbAmount.HeaderText = "Quantia";
+            this._dgvTbAmount.Name = "_dgvTbAmount";
+            this._dgvTbAmount.ReadOnly = true;
+            this._dgvTbAmount.Width = 86;
             // 
             // btnAdd
             // 
@@ -289,7 +303,7 @@ namespace PMES_SAM.Forms
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(115, 178);
             this.btnRemove.TabIndex = 2;
-            this.btnRemove.Text = "Remover <<";
+            this.btnRemove.Text = " Remover <<";
             this.toolTip1.SetToolTip(this.btnRemove, "Atalho: F2");
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -352,10 +366,11 @@ namespace PMES_SAM.Forms
             // 
             this.tbSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbSearch.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbSearch.Location = new System.Drawing.Point(41, 472);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.PlaceholderText = "Identificador";
+            this.tbSearch.PlaceholderText = "Código";
             this.tbSearch.Size = new System.Drawing.Size(241, 20);
             this.tbSearch.TabIndex = 3;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
@@ -536,13 +551,13 @@ namespace PMES_SAM.Forms
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTbId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTbName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTbIdentificador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTbAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _dgvTbAmount;
     }
 }

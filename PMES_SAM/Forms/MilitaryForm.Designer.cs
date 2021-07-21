@@ -95,6 +95,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbName.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbName.Location = new System.Drawing.Point(19, 150);
             this.tbName.Name = "tbName";
@@ -108,6 +109,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbPin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbPin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbPin.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbPin.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbPin.Location = new System.Drawing.Point(641, 150);
             this.tbPin.Name = "tbPin";
@@ -217,6 +219,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbPel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbPel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbPel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbPel.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbPel.Location = new System.Drawing.Point(309, 150);
             this.tbPel.Name = "tbPel";
@@ -240,6 +243,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbNum.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbNum.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNum.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbNum.Location = new System.Drawing.Point(189, 150);
             this.tbNum.Name = "tbNum";
@@ -263,6 +267,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbNumFunc.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbNumFunc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbNumFunc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNumFunc.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbNumFunc.Location = new System.Drawing.Point(409, 150);
             this.tbNumFunc.Name = "tbNumFunc";
@@ -321,6 +326,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbSearch.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbSearch.Location = new System.Drawing.Point(280, 526);
             this.tbSearch.Name = "tbSearch";

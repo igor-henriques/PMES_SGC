@@ -88,7 +88,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         public void FormatColumns()
         {
             try
@@ -121,7 +120,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private async void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             try
@@ -147,7 +145,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private void BuildStatusBar()
         {
             alblTitle.Text = $"Serviço do dia {DateTime.Today.ToString("dd/MM/yyyy")}";
@@ -168,7 +165,6 @@ namespace PMES_SAM.Forms
                 Close();
             }
         }
-
         private async void backupBtn_Click(object sender, EventArgs e)
         {
             try
@@ -245,7 +241,6 @@ namespace PMES_SAM.Forms
 
             return default;
         }
-
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
             await LoadTable();
@@ -438,6 +433,55 @@ namespace PMES_SAM.Forms
                 }
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            loggedUser = null;
+            Login.Text = default;
+        }
+        private async void btnDeleteLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                #region VERIFIY
+                if (!await _credentials.CheckUserCredential(Credential.DeleteLogs, await _users.GetLoggedUser()))
+                {
+                    MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
+                if (dgvMain.SelectedRows.Count <= 0)
+                {
+                    MessageBox.Show("Selecione ao menos uma linha para excluir.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+                #endregion
+
+                if (MessageBox.Show($"Tem certeza que deseja remover {dgvMain.SelectedRows.Count} registro(s) de log?", "Removendo...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) is DialogResult.Yes)
+                {
+                    await _log.Remove(await GetLogsFromGrid());
+                    await LoadTable();
+                }                
+            }
+            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+        }
+        private async Task<List<Log>> GetLogsFromGrid()
+        {
+            List<Log> logs = new List<Log>();
+
+            foreach (DataGridViewRow row in dgvMain.SelectedRows)
+            {
+                logs.Add(new Log
+                {
+                    Id = int.Parse(row.Cells[0].Value.ToString()),
+                    Date = DateTime.Parse(row.Cells[1].Value.ToString()),
+                    Description = row.Cells[2].Value.ToString(),
+                    IdUsuario = int.Parse(row.Cells[3].Value.ToString()),
+                    Usuario = await _users.Get(int.Parse(row.Cells[3].Value.ToString()))
+                });
+            }
+
+            return logs;
         }
     }
 }

@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Repository
@@ -14,6 +13,7 @@ namespace Domain.Repository
     {
         Task<Cautela_Material> Get(int id);
         Task<List<Cautela_Material>> Get();
+        Task<List<Cautela_Material>> GetListMaterials(int cautelaId);
         Task<bool> Add(Cautela_Material material);
         Task<bool> Add(Cautela material);
         Task<bool> Remove(int id);
@@ -41,13 +41,14 @@ namespace Domain.Repository
                     toAdd.Add(new Cautela_Material
                     {
                         Id_Cautela = cautela.Id,       
-                        IdMaterial = mat.Id
+                        IdMaterial = mat.Id,
+                        MaterialAmount = mat.Count
                     });
 
                     var fromDbCurMat = await _context.Material.Where(x => x.Id.Equals(mat.Id)).FirstOrDefaultAsync();
                     if (fromDbCurMat != null)
                     {
-                        fromDbCurMat.Status = Infra.Model.Enum.Status.Cautelado;
+                        fromDbCurMat.Count -= mat.Count;
                     }
                 }
 
@@ -64,6 +65,16 @@ namespace Domain.Repository
         public Task<Cautela_Material> Get(int id)
         {
             throw new NotImplementedException();
+        }
+        public async Task<List<Cautela_Material>> GetListMaterials(int cautelaId)
+        {
+            try
+            {
+                return await _context.Cautela_Material.Include(x => x.Material).Include(x => x.Cautela).Where(x => x.Id_Cautela.Equals(cautelaId)).ToListAsync();
+            }
+            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+
+            return default;
         }
 
         public Task<List<Cautela_Material>> Get()

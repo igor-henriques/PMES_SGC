@@ -102,7 +102,7 @@ namespace Domain.Repository
                 {
                     mat.Code = material.Code;
                     mat.Nome = material.Nome;
-                    mat.Status = mat.Status;
+                    mat.Count = material.Count;
 
                     await _context.SaveChangesAsync();
 

@@ -40,6 +40,9 @@ namespace PMES_SAM.Forms
             tbName.Clear();
             tbID.Clear();
             tbSearch.Clear();
+            tbAmount.Clear();
+
+            cbUnique_CheckedChanged(cbUnique, null);
         }
 
         private async void MateriaisForm_Load(object sender, EventArgs e)
@@ -54,6 +57,10 @@ namespace PMES_SAM.Forms
                 dgvItems.Columns.Clear();
                 dgvItems.Refresh();
                 dgvItems.DataSource = await _material.Get();
+
+                AutoCompleteStringCollection materialNameAutoComplete = new AutoCompleteStringCollection();
+                (await _context.Material.Select(x => x.Nome).ToListAsync()).ForEach(name => materialNameAutoComplete.Add(name.ToString()));
+                tbName.AutoCompleteCustomSource = materialNameAutoComplete;
 
                 Clear();
                 FormatColumns();
@@ -76,28 +83,26 @@ namespace PMES_SAM.Forms
 
                 if (!string.IsNullOrEmpty(tbName.Text.Trim()))
                 {
-                    if (cbNoID.Checked)
-                    {
-                        tbID.Text = default;
-                    }
-
                     Material mat = new Material
                     {
                         Nome = tbName.Text.ToUpper().Trim(),
                         Code = tbID.Text.Trim(),
-                        Status = Infra.Model.Enum.Status.Disponível
+                        Count = int.Parse(tbAmount.Text),
+                        IsUnique = cbUnique.Checked
                     };
 
                     if (await _context.Material.Where(x => x.Code.Equals(mat.Code)).Where(y => y.Nome.Equals(mat.Nome)).FirstOrDefaultAsync() != null)
                     {
                         MessageBox.Show("Já existe um material cadastrado com esse nome e código.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         tbID.Focus();
-                        return;                        
+                        return;
                     }
 
                     await _material.Add(mat);
                     await _log.Add($"O material {mat.Nome}({mat.Code}) foi ADICIONADO ao sistema.");
+
                     await LoadTable();
+                    tbName.Focus();
                 }
                 else
                 {
@@ -114,9 +119,9 @@ namespace PMES_SAM.Forms
                 {
                     MessageBox.Show("Você não possui permissão para realizar essa operação", "ACESSO NEGADO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
-                }
+                }                                
 
-                if (dgvItems.SelectedRows.Count > 0)
+                if (dgvItems.SelectedRows.Count == 1)
                 {
                     if (ableToEdit <= 0)
                     {
@@ -130,6 +135,8 @@ namespace PMES_SAM.Forms
 
                         tbName.Text = dgvItems.SelectedRows[0].Cells[1].Value.ToString();
                         tbID.Text = dgvItems.SelectedRows[0].Cells[2].Value.ToString();
+                        tbAmount.Text = dgvItems.SelectedRows[0].Cells[3].Value.ToString();
+                        cbUnique.Checked = Convert.ToBoolean(dgvItems.SelectedRows[0].Cells[4].Value);
                     }
 
                     ableToEdit++;
@@ -170,32 +177,62 @@ namespace PMES_SAM.Forms
 
                 int id = currentRow;
 
-                Material mat = await _context.Material.FindAsync(id);
-
-                string oldCode = mat.Code;
+                Material mat = await _context.Material.FindAsync(id);                
+                Material oldMat = Material.Clone(mat);
 
                 if (mat != null)
                 {
                     mat.Nome = tbName.Text.ToUpper().Trim();
-                    mat.Code = tbID.Text.Trim();                    
-                    
+                    mat.Code = tbID.Text.Trim();
+                    mat.Count = int.Parse(tbAmount.Text);
+                    mat.IsUnique = cbUnique.Checked;
+
                     await _context.SaveChangesAsync();
-                    
-                    if (oldCode != mat.Code)
-                    {
-                        await _log.Add($"O material {mat.Nome}({oldCode} => {mat.Code}) foi ATUALIZADO no sistema.");
-                    }
-                    else
-                    {
-                        await _log.Add($"O material {mat.Nome}({mat.Code}) foi ATUALIZADO no sistema.");
-                    }                    
+
+                    string updateString = BuildUpdateString(oldMat, mat);
+                    if (updateString.Length > 0)
+                        await _log.Add($"O material {oldMat.Code} foi ATUALIZADO no sistema: {updateString}");
                 }
                 else
                 {
-                    MessageBox.Show("O atual militar não foi encontrado. Consulte a administração.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("O atual material não foi encontrado. Consulte a administração.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
+        }
+        private string BuildUpdateString(Material oldMat, Material newMat)
+        {
+            string response = string.Empty;
+
+            if (oldMat != null && newMat != null)
+            {
+                if (oldMat.Code != newMat.Code)
+                {
+                    response += $"{oldMat.Code} => {newMat.Code} | ";
+                }
+
+                if (oldMat.Count != newMat.Count)
+                {
+                    response += $"{oldMat.Count}x => {newMat.Count}x | ";
+                }
+
+                if (oldMat.Nome != newMat.Nome)
+                {
+                    response += $"{oldMat.Nome} => {newMat.Nome} | ";
+                }
+
+                if (oldMat.IsUnique != newMat.IsUnique)
+                {
+                    response += $"{(oldMat.IsUnique ? "ÚNICO" : "MÚLTIPLO")} => {(newMat.IsUnique ? "ÚNICO" : "MÚLTIPLO")} ";
+                }
+
+                if (response.Length > 2 && response.Substring(response.Length - 2).Equals("| "))
+                {
+                    response = response.Replace(response.Substring(response.Length - 2), default);
+                }
+            }
+
+            return response;
         }
         private async void ctxDelete_Click(object sender, EventArgs e)
         {
@@ -217,7 +254,7 @@ namespace PMES_SAM.Forms
                             {
                                 if (await CheckCautelas(id))
                                 {
-                                    MessageBox.Show("Impossível excluir registro de Material enquanto houver cautelas pendentes no registro do mesmo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Impossível afetar o registro de Material enquanto houver cautelas pendentes no registro do mesmo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
                                 }
 
@@ -228,7 +265,7 @@ namespace PMES_SAM.Forms
                                     await _log.Add($"O material {curMat.Nome}({curMat.Code}) foi REMOVIDO do sistema");
                                 }
                             }
-                        }                        
+                        }
 
                         Clear();
                         await LoadTable();
@@ -243,29 +280,32 @@ namespace PMES_SAM.Forms
         }
         private async Task<bool> CheckCautelas(int id)
         {
+            bool response = false;
+
             try
-            {
-                int count = await _context.Material.Where(x => x.Id.Equals(id) && x.Status == Infra.Model.Enum.Status.Cautelado).CountAsync();
+            {                
+                int count = await _context.Material.Where(x => x.Id.Equals(id) && x.Count <= 0).CountAsync();
 
                 if (count > 0)
-                    return true;
-
-                return false;
+                    response = true;
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
 
-            return false;
+            return response;
         }
         public void FormatColumns()
         {
             dgvItems.Columns[0].Visible = false;
-            dgvItems.Columns[3].Visible = false;
 
             dgvItems.Columns[1].HeaderText = "Nome do Material";
-            dgvItems.Columns[2].HeaderText = "Identificador";
+            dgvItems.Columns[2].HeaderText = "Código";
+            dgvItems.Columns[3].HeaderText = "Q. Total";
+            dgvItems.Columns[4].HeaderText = "Único";
 
             dgvItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvItems.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvItems.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
             for (int i = 0; i < dgvItems.RowCount; i++)
             {
@@ -320,7 +360,7 @@ namespace PMES_SAM.Forms
         {
             if (e.KeyCode.Equals(Keys.Enter))
             {
-                tbID.Focus();
+                tbAmount.Focus();
             }
         }
         private void pbBack_Click(object sender, EventArgs e)
@@ -334,21 +374,16 @@ namespace PMES_SAM.Forms
                 btnSave.PerformClick();
             }
         }
-
-        private void cbNoID_MouseDown(object sender, MouseEventArgs e)
-        {
-            tbID.Enabled = cbNoID.Checked;
-            tbID.BackColor = cbNoID.Checked ? Color.WhiteSmoke : Color.LightGray;
-            tbID.Text = default;
-        }
-
         private async void tbSearch_KeyUp(object sender, KeyEventArgs e)
         {
             try
             {
                 if (tbSearch.Text.Trim() != string.Empty)
                 {
-                    var foundMaterials = from i in _context.Material where EF.Functions.Like(rbName.Checked ? i.Nome : i.Code, $"%{tbSearch.Text.Trim()}%") select i;
+                    var foundMaterials = from i in _context.Material
+                                         where EF.Functions.Like(rbName.Checked ? i.Nome : i.Code, $"%{tbSearch.Text.Trim()}%")
+                                         select i;
+
                     dgvItems.DataSource = await foundMaterials.ToListAsync();
                     dgvItems.Rows[dgvItems.Rows.Count - 1].Selected = true;
                     FormatColumns();
@@ -360,11 +395,43 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
             await LoadTable();
             tbSearch.Clear();
+        }
+        private void tbAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+
+            if (ch == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            else if (!char.IsDigit(ch) || !int.TryParse(tbAmount.Text + ch, out int x))
+            {
+                e.Handled = true;
+            }
+        }
+        private void tbAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+            {
+                tbID.Focus();
+            }
+        }
+        private void cbUnique_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbUnique.Checked)
+            {
+                tbAmount.Text = 1.ToString();
+                tbAmount.ReadOnly = true;
+            }
+            else
+            {
+                tbAmount.ReadOnly = false;
+                tbAmount.Clear();
+            }
         }
     }
 }

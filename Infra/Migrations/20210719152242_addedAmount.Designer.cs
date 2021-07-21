@@ -3,14 +3,16 @@ using System;
 using Infra.Model.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210719152242_addedAmount")]
+    partial class addedAmount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,9 +107,6 @@ namespace Infra.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Count")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsUnique")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")

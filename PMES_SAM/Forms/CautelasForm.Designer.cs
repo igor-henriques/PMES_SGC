@@ -194,6 +194,7 @@ namespace PMES_SAM.Forms
             // 
             this.tbNumFuncSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbNumFuncSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbNumFuncSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNumFuncSearch.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbNumFuncSearch.Location = new System.Drawing.Point(18, 186);
             this.tbNumFuncSearch.Name = "tbNumFuncSearch";
@@ -248,10 +249,11 @@ namespace PMES_SAM.Forms
             // 
             this.tbMaterialSearch.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbMaterialSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbMaterialSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbMaterialSearch.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbMaterialSearch.Location = new System.Drawing.Point(425, 186);
             this.tbMaterialSearch.Name = "tbMaterialSearch";
-            this.tbMaterialSearch.PlaceholderText = "Identificador";
+            this.tbMaterialSearch.PlaceholderText = "Código";
             this.tbMaterialSearch.Size = new System.Drawing.Size(285, 20);
             this.tbMaterialSearch.TabIndex = 37;
             this.tbMaterialSearch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbMaterialSearch_MouseDown);

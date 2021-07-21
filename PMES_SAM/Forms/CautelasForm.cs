@@ -75,7 +75,7 @@ namespace PMES_SAM.Forms
 
             return default;
         }
-        private async void dgvCautelas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCautelas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -88,9 +88,7 @@ namespace PMES_SAM.Forms
                     if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                     {
                         int cautelaId = (int)dgvCautelas.Rows[e.RowIndex].Cells[0].Value;
-                        List<Material> allMats = await _materiais.GetByCautela(cautelaId);
-
-                        Material_Cautela_Form items = new Material_Cautela_Form(allMats);
+                        Material_Cautela_Form items = new Material_Cautela_Form(cautelaId, _context);
                         items.ShowDialog();
                     }
                 }
@@ -167,41 +165,16 @@ namespace PMES_SAM.Forms
 
                 if (dgvCautelas.SelectedRows.Count > 0)
                 {
-                    if ((await _cautelas.Get(cautelaId)).DataDevolucao.Equals(default))
+                    var cautela = await _cautelas.Get(cautelaId);
+                    cautela.Materiais = await _materiais.GetByCautela(cautelaId);
+
+                    if (cautela.DataDevolucao.Equals(default))
                     {
-                        DevolucaoForm pinDevolution = new DevolucaoForm();
+                        string numFuncional = dgvCautelas.SelectedRows[0].Cells[1].Value.ToString();
+                        DevolucaoForm pinDevolution = new DevolucaoForm(_context, cautela, numFuncional);
                         pinDevolution.ShowDialog();
 
-                        if (!string.IsNullOrEmpty(pinDevolution.PIN))
-                        {
-                            string numFuncional = dgvCautelas.SelectedRows[0].Cells[1].Value.ToString();
-
-                            if (await _militares.Authenticate(numFuncional, pinDevolution.PIN))
-                            {
-                                Cautela curCautela = await _context.Cautela.Include(x => x.Militar).Where(x => x.Id.Equals(cautelaId)).FirstOrDefaultAsync();
-                                if (curCautela != null)
-                                {
-                                    curCautela.DataDevolucao = DateTime.Now;
-                                    curCautela.Observations = pinDevolution.Observations.ToUpper();
-                                }
-
-                                List<Material> curCautelaMaterials = await _cautelas.GetCautelaMaterials(cautelaId);
-
-                                curCautelaMaterials.ForEach(curMat => curMat.Status = Infra.Model.Enum.Status.Disponível);
-                                curCautela.Materiais = curCautelaMaterials;                                
-
-                                await _context.SaveChangesAsync();
-                                await LoadCautelas();
-
-                                await _log.Add($"O militar {curCautela.Militar.Nome}({curCautela.Militar.Funcional}) realizou DEVOLUÇÃO dos materiais: {string.Join(", ", curCautela.Materiais.Select(x => x.Code))}." + (!string.IsNullOrEmpty(curCautela.Observations) ? " OBS: " + curCautela.Observations : string.Empty));
-
-                                MessageBox.Show("Materiais devolvidos com sucesso.", "Descautelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show($"O PIN foi digitado incorretamente para o militar de Nº Funcional {numFuncional}", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                        }
+                        await LoadCautelas();
                     }
                     else
                     {
@@ -215,7 +188,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private async void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -244,6 +216,7 @@ namespace PMES_SAM.Forms
                             else
                             {
                                 MessageBox.Show("Preencha o código do material para pesquisar.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                tbMaterialSearch.Focus();
                             }
                         }
                     },
@@ -269,6 +242,7 @@ namespace PMES_SAM.Forms
                             else
                             {
                                 MessageBox.Show("Preencha o Número Funcional do militar para pesquisar.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                tbNumFuncSearch.Focus();
                             }                            
                         }
                     },
@@ -301,7 +275,6 @@ namespace PMES_SAM.Forms
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
-
         private void dtfPicker_ValueChanged(object sender, EventArgs e)
         {
             if (dtfPicker.Value < dtiPicker.Value)
@@ -310,22 +283,18 @@ namespace PMES_SAM.Forms
                 dtfPicker.Value = dtiPicker.Value.AddDays(1);
             }
         }
-
         private void tbNumFuncSearch_MouseDown(object sender, MouseEventArgs e)
         {
             rbMilitar.Checked = true;
         }
-
         private void tbMaterialSearch_MouseDown(object sender, MouseEventArgs e)
         {
             rbMaterial.Checked = true;
         }
-
         private void cbStatusSearch_MouseDown(object sender, MouseEventArgs e)
         {
             rbStatus.Checked = true;
         }
-
         private void dtiPicker_MouseDown(object sender, MouseEventArgs e)
         {
             rbDate.Checked = true;
