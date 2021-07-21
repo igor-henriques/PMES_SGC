@@ -1,0 +1,11 @@
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\bin\Release\netstandard2.1\win7-x64\Domain.deps.json
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\bin\Release\netstandard2.1\win7-x64\Domain.dll
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\bin\Release\netstandard2.1\win7-x64\Domain.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\bin\Release\netstandard2.1\win7-x64\Infra.dll
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\bin\Release\netstandard2.1\win7-x64\Infra.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\obj\Release\netstandard2.1\win7-x64\Domain.AssemblyInfoInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\obj\Release\netstandard2.1\win7-x64\Domain.AssemblyInfo.cs
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\obj\Release\netstandard2.1\win7-x64\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\obj\Release\netstandard2.1\win7-x64\Domain.csproj.CopyComplete
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\obj\Release\netstandard2.1\win7-x64\Domain.dll
+C:\Users\Ironside\source\repos\PMES_SAM\Domain\obj\Release\netstandard2.1\win7-x64\Domain.pdb

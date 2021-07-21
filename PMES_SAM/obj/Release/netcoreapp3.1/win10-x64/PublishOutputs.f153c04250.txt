@@ -1,0 +1,4 @@
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\publish\PMES_SAM.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\publish\Domain.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\publish\Infra.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\publish\PMES_SAM.exe

@@ -1,0 +1,134 @@
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.exe
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.deps.json
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.runtimeconfig.json
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.runtimeconfig.dev.json
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\ClosedXML.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\DocumentFormat.OpenXml.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\ExcelNumberFormat.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Humanizer.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Data.Sqlite.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Logging.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Options.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Primitives.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.batteries_v2.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.nativelibrary.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.core.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Collections.Immutable.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.ComponentModel.Annotations.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Text.Encodings.Web.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Text.Json.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\e_sqlite3.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Domain.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Infra.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Domain.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Infra.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.AuthenticationForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.CautelaForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.ControlAccessForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.MainForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.MateriaisForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.MilitaryForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.NewCautelaForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.UtilityForms.DevolucaoForm.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.Material_Cautela_Form.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Properties.Resources.resources
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.GenerateResource.cache
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.AssemblyInfoInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.AssemblyInfo.cs
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.CoreCompileInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.CopyComplete
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.genruntimeconfig.cache
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Auth.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Core.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Drive.v3.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Newtonsoft.Json.dll
+C:\Users\Ironside\source\repos\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.AssemblyReference.cache
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.exe
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.deps.json
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.runtimeconfig.json
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.runtimeconfig.dev.json
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\PMES_SAM.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\ClosedXML.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\DocumentFormat.OpenXml.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\ExcelNumberFormat.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Auth.PlatformServices.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Auth.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Core.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Google.Apis.Drive.v3.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Humanizer.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Data.Sqlite.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Design.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Caching.Memory.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.DependencyInjection.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.DependencyModel.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Logging.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Options.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Microsoft.Extensions.Primitives.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Newtonsoft.Json.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.batteries_v2.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.nativelibrary.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.core.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Collections.Immutable.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.ComponentModel.Annotations.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Diagnostics.DiagnosticSource.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Text.Encodings.Web.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\System.Text.Json.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\e_sqlite3.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Domain.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Infra.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Domain.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\win10-x64\Infra.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.AssemblyReference.cache
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.AuthenticationForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.CautelaForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.ControlAccessForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.MainForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.MateriaisForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.MilitaryForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.NewCautelaForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.UtilityForms.AmountSelectForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.UtilityForms.CredentialSelectForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.UtilityForms.DevolucaoForm.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Forms.Material_Cautela_Form.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.Properties.Resources.resources
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.GenerateResource.cache
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.AssemblyInfoInputs.cache
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.AssemblyInfo.cs
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.CoreCompileInputs.cache
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.csproj.CopyComplete
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.dll
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.pdb
+C:\Projetos\SAM BACKUP\PMES_SAM\PMES_SAM\obj\Release\netcoreapp3.1\win10-x64\PMES_SAM.genruntimeconfig.cache

@@ -1,0 +1,4 @@
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Debug\netstandard2.0\Infra.csprojAssemblyReference.cache
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Debug\netstandard2.0\Infra.AssemblyInfoInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Debug\netstandard2.0\Infra.AssemblyInfo.cs
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Debug\netstandard2.0\Infra.csproj.CoreCompileInputs.cache

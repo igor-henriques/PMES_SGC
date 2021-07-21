@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Forms\AuthenticationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CautelasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ControlAccessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\MateriaisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UtilityForms\AmountSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UtilityForms\CredentialSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UtilityForms\DevolucaoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UtilityForms\Material_Cautela_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\MilitaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\NewCautelaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

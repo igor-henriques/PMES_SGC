@@ -1,0 +1,8 @@
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\bin\Release\netstandard2.1\win7-x64\Infra.deps.json
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\bin\Release\netstandard2.1\win7-x64\Infra.dll
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\bin\Release\netstandard2.1\win7-x64\Infra.pdb
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Release\netstandard2.1\win7-x64\Infra.AssemblyInfoInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Release\netstandard2.1\win7-x64\Infra.AssemblyInfo.cs
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Release\netstandard2.1\win7-x64\Infra.csproj.CoreCompileInputs.cache
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Release\netstandard2.1\win7-x64\Infra.dll
+C:\Users\Ironside\source\repos\PMES_SAM\Infra\obj\Release\netstandard2.1\win7-x64\Infra.pdb
