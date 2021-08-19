@@ -41,7 +41,7 @@ namespace PMES_SAM.Forms.UtilityForms
         }
         private async void DevolucaoForm_Load(object sender, EventArgs e)
         {
-            (await _cautelaMaterial.GetListMaterials(_cautela.Id)).ForEach(curMat => dgvItems.Rows.Add(new object[] { curMat.Id, curMat.Material.Nome, curMat.Material.Code, curMat.MaterialAmount, curMat.Material.IsUnique }));
+            (await _cautelaMaterial.GetListMaterials(_cautela.Id)).ForEach(curMat => dgvItems.Rows.Add(new object[] { curMat.Id, curMat.Material.Nome, curMat.Material.Code, curMat.MaterialAmount, string.Empty, curMat.Material.IsUnique }));
         }
         private void tbPIN_KeyPress(object sender, KeyPressEventArgs e)
         {
