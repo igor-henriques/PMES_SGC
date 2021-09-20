@@ -40,3 +40,30 @@ Log Entry : 21:43:58 quinta-feira, 16 de setembro de 2021
   :System.NullReferenceException: Object reference not set to an instance of an object.
    at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 75
 -------------------------------
+
+Log Entry : 00:28:45 segunda-feira, 20 de setembro de 2021
+  :
+  :System.InvalidOperationException: Nullable object must have a value.
+   at System.Nullable`1.get_Value()
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 75
+-------------------------------
+
+Log Entry : 00:28:48 segunda-feira, 20 de setembro de 2021
+  :
+  :System.InvalidOperationException: Nullable object must have a value.
+   at System.Nullable`1.get_Value()
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 75
+-------------------------------
+
+Log Entry : 00:28:53 segunda-feira, 20 de setembro de 2021
+  :
+  :System.InvalidOperationException: Nullable object must have a value.
+   at System.Nullable`1.get_Value()
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 75
+-------------------------------
+
+Log Entry : 00:31:22 segunda-feira, 20 de setembro de 2021
+  :
+  :System.NullReferenceException: Object reference not set to an instance of an object.
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.UpdateRecords(List`1 curMats) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 126
+-------------------------------

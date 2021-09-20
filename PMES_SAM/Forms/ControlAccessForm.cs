@@ -55,9 +55,13 @@ namespace PMES_SAM.Forms
         private async Task LoadComboBox()
         {
             AutoCompleteStringCollection dadosMilitares = new AutoCompleteStringCollection();
-            foreach (var militar in (await _militaries.Get()).OrderBy(x => x.Nome).ThenBy(x => x.Funcional))
+
+            var militariesSource = await _militaries.Get();
+
+            foreach (var militar in militariesSource.OrderBy(x => x.Nome).ThenBy(x => x.Funcional))
             {
                 string item = militar.Funcional + " | " + militar.Nome;
+
                 cbMilitar.Items.Add(item);
                 dadosMilitares.Add(item);
             }

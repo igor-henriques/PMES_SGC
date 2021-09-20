@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "scskiI2eT+MpHEOuCUyVojrQGFdojAUBcVI3kiPqTH/zqj2F17JJCS/OA3U0uXp5ek3hT60heqQvGI3rZYtIug==",
+  "dgSpecHash": "1tDJisvw+JG1E+xPmphyU4aGcBgDMoBhKOD/C89I5gMSZQ9mt4HBPmyvhC7RM9mpXRt4kbN0/cshgfD0DRLdEQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ironside\\source\\repos\\SAM BACKUP\\PMES_SAM\\PMES_SAM\\PMES_SAM.csproj",
   "expectedPackageFiles": [
@@ -110,8 +110,6 @@
     "C:\\Users\\Ironside\\.nuget\\packages\\system.security.cryptography.x509certificates\\4.3.0\\system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
     "C:\\Users\\Ironside\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\Ironside\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
-    "C:\\Users\\Ironside\\.nuget\\packages\\system.text.encodings.web\\5.0.0\\system.text.encodings.web.5.0.0.nupkg.sha512",
-    "C:\\Users\\Ironside\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
     "C:\\Users\\Ironside\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Ironside\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\Ironside\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
