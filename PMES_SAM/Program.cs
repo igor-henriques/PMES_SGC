@@ -30,20 +30,20 @@ namespace PMES_SAM
         {            
             var services = new ServiceCollection();
 
-            services.AddTransient<ICautelaInterface, ICautelaRepository>();
-            services.AddTransient<ICautelaMaterialInterface, ICautelaMaterialRepository>();
-            services.AddTransient<IMaterialInterface, IMaterialRepository>();
-            services.AddTransient<IMilitaryInterface, IMilitarRepository>();            
-            services.AddTransient<IUsuarioInterface, IUsuarioRepository>();            
-            services.AddTransient<ILogInterface, ILogRepository>();            
-            services.AddTransient<IUsuarioCredencialInterface, IUsuarioCredencialRepository>();            
+            services.AddScoped<ICautelaInterface, CautelaRepository>();
+            services.AddScoped<ICautelaMaterialInterface, CautelaMaterialRepository>();
+            services.AddScoped<IMaterialInterface, MaterialRepository>();
+            services.AddScoped<IMilitaryInterface, MilitarRepository>();            
+            services.AddScoped<IUsuarioInterface, UsuarioRepository>();            
+            services.AddScoped<ILogInterface, LogRepository>();            
+            services.AddScoped<IUsuarioCredencialInterface, UsuarioCredencialRepository>();            
             services.AddSingleton<MainForm>();
             services.AddSingleton<AuthenticationForm>();
-            services.AddTransient<ControlAccessForm>();
-            services.AddTransient<MilitaryForm>();
-            services.AddTransient<MateriaisForm>();
-            services.AddTransient<CautelaForm>();
-            services.AddTransient<NewCautelaForm>();
+            services.AddSingleton<ControlAccessForm>();
+            services.AddSingleton<MilitaryForm>();
+            services.AddSingleton<MateriaisForm>();
+            services.AddSingleton<CautelaForm>();
+            services.AddSingleton<NewCautelaForm>();
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite("Filename=./sam_database.sqlite"));            
 
             return services;

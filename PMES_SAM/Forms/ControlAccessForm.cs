@@ -36,10 +36,10 @@ namespace PMES_SAM.Forms
 
             _context = context;
 
-            _users = new IUsuarioRepository(_context);
-            _militaries = new IMilitarRepository(_context);
-            _log = new ILogRepository(_context);
-            _credentials = new IUsuarioCredencialRepository(_context);
+            _users = new UsuarioRepository(_context);
+            _militaries = new MilitarRepository(_context);
+            _log = new LogRepository(_context);
+            _credentials = new UsuarioCredencialRepository(_context);
         }
 
         private void pbBack_Click(object sender, EventArgs e)

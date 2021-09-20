@@ -1,0 +1,42 @@
+
+Log Entry : 21:31:09 quinta-feira, 16 de setembro de 2021
+  :
+  :System.IO.FileNotFoundException: Could not find file 'C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\client_secret.json'.
+File name: 'C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\bin\Release\netcoreapp3.1\client_secret.json'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at Infra.Helpers.GDrive.GetUserCredentialAsync() in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\Infra\Helpers\GDrive.cs:line 21
+   at PMES_SAM.Forms.MainForm.UploadDatabase(String filePath, String fileName, String parentFolderId, String contentType) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\MainForm.cs:line 210
+-------------------------------
+
+Log Entry : 21:31:46 quinta-feira, 16 de setembro de 2021
+  :
+  :System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 98
+-------------------------------
+
+Log Entry : 21:32:17 quinta-feira, 16 de setembro de 2021
+  :
+  :System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 98
+-------------------------------
+
+Log Entry : 21:33:03 quinta-feira, 16 de setembro de 2021
+  :
+  :System.NullReferenceException: Object reference not set to an instance of an object.
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.UpdateRecords(List`1 curMats)
+-------------------------------
+
+Log Entry : 21:43:58 quinta-feira, 16 de setembro de 2021
+  :
+  :System.NullReferenceException: Object reference not set to an instance of an object.
+   at PMES_SAM.Forms.UtilityForms.DevolucaoForm.btnState_Click(Object sender, EventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\UtilityForms\DevolucaoForm.cs:line 75
+-------------------------------

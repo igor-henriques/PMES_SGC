@@ -393,7 +393,7 @@ namespace PMES_SAM.Forms
             this.ctxExport,
             this.btnDeleteLog});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(181, 70);
+            this.ctxMenu.Size = new System.Drawing.Size(128, 48);
             this.ctxMenu.Text = "Menu";
             // 
             // ctxExport
@@ -401,7 +401,7 @@ namespace PMES_SAM.Forms
             this.ctxExport.Image = ((System.Drawing.Image)(resources.GetObject("ctxExport.Image")));
             this.ctxExport.Name = "ctxExport";
             this.ctxExport.ShowShortcutKeys = false;
-            this.ctxExport.Size = new System.Drawing.Size(180, 22);
+            this.ctxExport.Size = new System.Drawing.Size(127, 22);
             this.ctxExport.Text = "Exportar";
             this.ctxExport.ToolTipText = "Exporta as linhas selecionadas em arquivo";
             this.ctxExport.Click += new System.EventHandler(this.ctxExport_Click);
@@ -410,7 +410,7 @@ namespace PMES_SAM.Forms
             // 
             this.btnDeleteLog.Image = global::PMES_SAM.Properties.Resources.close_button;
             this.btnDeleteLog.Name = "btnDeleteLog";
-            this.btnDeleteLog.Size = new System.Drawing.Size(180, 22);
+            this.btnDeleteLog.Size = new System.Drawing.Size(127, 22);
             this.btnDeleteLog.Text = "Excluir";
             this.btnDeleteLog.Click += new System.EventHandler(this.btnDeleteLog_Click);
             // 

@@ -26,19 +26,19 @@ namespace PMES_SAM.Forms
         IMilitaryInterface _militares;
         IMaterialInterface _materiais;
         IUsuarioInterface _users;
-        IUsuarioCredencialRepository _credentials;
+        UsuarioCredencialRepository _credentials;
         ApplicationDbContext _context;
         public CautelaForm(ApplicationDbContext context)
         {
             InitializeComponent();
 
             _context = context;
-            _cautelas = new ICautelaRepository(_context);
-            _militares = new IMilitarRepository(_context);
-            _materiais = new IMaterialRepository(_context);
-            _log = new ILogRepository(_context);
-            _users = new IUsuarioRepository(_context);
-            _credentials = new IUsuarioCredencialRepository(_context);
+            _cautelas = new CautelaRepository(_context);
+            _militares = new MilitarRepository(_context);
+            _materiais = new MaterialRepository(_context);
+            _log = new LogRepository(_context);
+            _users = new UsuarioRepository(_context);
+            _credentials = new UsuarioCredencialRepository(_context);
         }
 
         private async void CautelasForm_Load(object sender, EventArgs e)

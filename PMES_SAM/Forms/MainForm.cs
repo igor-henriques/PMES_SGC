@@ -54,9 +54,9 @@ namespace PMES_SAM.Forms
         private async void MainForm_Load(object sender, EventArgs e)
         {
             _context = serviceProvider.GetRequiredService<ApplicationDbContext>();
-            _log = new ILogRepository(_context);
-            _credentials = new IUsuarioCredencialRepository(_context);
-            _users = new IUsuarioRepository(_context);
+            _log = new LogRepository(_context);
+            _credentials = new UsuarioCredencialRepository(_context);
+            _users = new UsuarioRepository(_context);
 
             loggedUser.Credentials = (await _credentials.GetUserCredentials(loggedUser.Id)).Select(x => x.Credential).ToList();
 
@@ -129,6 +129,7 @@ namespace PMES_SAM.Forms
                 if (clickedMenuItem != null)
                 {
                     Credential credType = EnumHelper.LikeGetEnum<Credential>(clickedMenuItem.AccessibleName);
+
                     if (await _credentials.CheckUserCredential(credType, loggedUser))
                     {
                         clickedMenuItem.ShowDialog();
@@ -140,8 +141,6 @@ namespace PMES_SAM.Forms
                 }                
 
                 await LoadTable();
-
-                GC.Collect();
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }

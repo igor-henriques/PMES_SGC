@@ -32,12 +32,12 @@ namespace PMES_SAM.Forms
             InitializeComponent();
 
             _context = context;
-            _material = new IMaterialRepository(context);
-            _cautela = new ICautelaRepository(context);
-            _cautelaMaterial = new ICautelaMaterialRepository(context);
-            _log = new ILogRepository(_context);
-            _users = new IUsuarioRepository(_context);
-            _credentials = new IUsuarioCredencialRepository(_context);
+            _material = new MaterialRepository(context);
+            _cautela = new CautelaRepository(context);
+            _cautelaMaterial = new CautelaMaterialRepository(context);
+            _log = new LogRepository(_context);
+            _users = new UsuarioRepository(_context);
+            _credentials = new UsuarioCredencialRepository(_context);
         }
         private void pbBack_Click(object sender, EventArgs e)
         {

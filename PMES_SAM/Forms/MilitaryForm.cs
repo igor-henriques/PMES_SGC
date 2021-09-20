@@ -32,10 +32,10 @@ namespace PMES_SAM.Forms
 
             _context = context;
 
-            _militaries = new IMilitarRepository(_context);
-            _users = new IUsuarioRepository(_context);
-            _logs = new ILogRepository(_context);
-            _credentials = new IUsuarioCredencialRepository(_context);
+            _militaries = new MilitarRepository(_context);
+            _users = new UsuarioRepository(_context);
+            _logs = new LogRepository(_context);
+            _credentials = new UsuarioCredencialRepository(_context);
         }
         private void LoadComboBox()
         {
@@ -164,6 +164,21 @@ namespace PMES_SAM.Forms
                 if (tbPin.Text.Length < 4)
                 {
                     MessageBox.Show("O PIN precisa ter ao menos 4 dígitos.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbPin.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(tbName.Text))
+                {
+                    MessageBox.Show("O nome de guerra não pode ser vazio.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbName.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(tbNumFunc.Text))
+                {
+                    MessageBox.Show("O número funcional não pode ser vazio.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbNumFunc.Focus();
                     return;
                 }
 

@@ -21,7 +21,7 @@ namespace PMES_SAM.Forms
 
             this.idCautela = idCautela;
             this._context = _context;
-            this._cautelaMaterial = new ICautelaMaterialRepository(_context);
+            this._cautelaMaterial = new CautelaMaterialRepository(_context);
         }
 
         private void Material_Cautela_Form_Load(object sender, EventArgs e)

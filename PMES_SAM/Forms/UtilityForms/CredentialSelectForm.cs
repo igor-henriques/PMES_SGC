@@ -32,9 +32,9 @@ namespace PMES_SAM.Forms.UtilityForms
             this._context = _context;
             this.userId = userId;
 
-            _credentials = new IUsuarioCredencialRepository(_context);
-            _logs = new ILogRepository(_context);
-            _users = new IUsuarioRepository(_context);
+            _credentials = new UsuarioCredencialRepository(_context);
+            _logs = new LogRepository(_context);
+            _users = new UsuarioRepository(_context);
         }
         private List<Control> GetCredentialsTypes()
         {

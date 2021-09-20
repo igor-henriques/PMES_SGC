@@ -33,10 +33,10 @@ namespace PMES_SAM.Forms.UtilityForms
             _cautela = cautela;
 
             this._context = _context;
-            this._material = new IMaterialRepository(_context);
-            this._cautelaMaterial = new ICautelaMaterialRepository(_context);
-            this._militar = new IMilitarRepository(_context);
-            this._logs = new ILogRepository(_context);
+            this._material = new MaterialRepository(_context);
+            this._cautelaMaterial = new CautelaMaterialRepository(_context);
+            this._militar = new MilitarRepository(_context);
+            this._logs = new LogRepository(_context);
             this.numFuncional = numFuncional;
         }
         private async void DevolucaoForm_Load(object sender, EventArgs e)
@@ -72,30 +72,12 @@ namespace PMES_SAM.Forms.UtilityForms
                     #region VERIFY
                     foreach (DataGridViewRow row in dgvItems.Rows)
                     {
-                        for (int i = 0; i < row.Cells.Count; i++)
+                        if ((row.Cells[4].Value?.Equals(string.Empty)).Value)
                         {
-                            if (row.Cells[i].Value is null)
-                            {
-                                MessageBox.Show("Preencha todos os campos da tabela.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
+                            MessageBox.Show("Preencha todos os campos da tabela.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-
-
-                    }
-
-                    for (int i = 0; i < dgvItems.RowCount; i++)
-                    {
-                        for (int j = 0; j < dgvItems.Rows[i].Cells.Count; j++)
-                        {
-                            if (dgvItems.Rows[i].Cells[j].Value is null)
-                            {
-                                MessageBox.Show("Preencha todos os campos da tabela.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                        }
-
-                        if (int.Parse(dgvItems.Rows[i].Cells[3].Value.ToString()) < int.Parse(dgvItems.Rows[i].Cells[4].Value.ToString()))
+                        else if (int.Parse(row.Cells[3].Value.ToString()) < int.Parse(row.Cells[4].Value.ToString()))
                         {
                             MessageBox.Show("A quantidade devolvida não pode ser maior que a quantidade cautelada.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -116,10 +98,11 @@ namespace PMES_SAM.Forms.UtilityForms
                     #endregion
 
                     await UpdateRecords(GetMaterialsOnGrid());
+
                     MessageBox.Show("Materiais devolvidos com sucesso.", "Descautela", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Close();
-                }                
+                }
             }
             catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
@@ -141,12 +124,12 @@ namespace PMES_SAM.Forms.UtilityForms
                     var updateMat = await _material.Get(curMat.Id);
                     logResult.Add($"{curMat.Code} - {curMat.Nome}({curMat.Count}x)");
                     updateMat.Count += curMat.Count;
-                }                
+                }
 
                 await _logs.Add($"{curCautela.Militar.Nome.ToUpper()} realizou DEVOLUÇÃO dos seguintes materiais: {string.Join(", ", logResult)}");
                 await _context.SaveChangesAsync();
             }
-            catch (Exception ex) { LogWriter.Write(ex.ToString()); }            
+            catch (Exception ex) { LogWriter.Write(ex.ToString()); }
         }
         private List<Material> GetMaterialsOnGrid()
         {
@@ -195,7 +178,7 @@ namespace PMES_SAM.Forms.UtilityForms
                 {
                     e.Handled = true;
                 }
-            }            
+            }
         }
         private void tbObservations_KeyDown(object sender, KeyEventArgs e)
         {
