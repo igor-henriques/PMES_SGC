@@ -39,11 +39,11 @@ namespace PMES_SAM
             services.AddScoped<IUsuarioCredencialInterface, UsuarioCredencialRepository>();            
             services.AddSingleton<MainForm>();
             services.AddSingleton<AuthenticationForm>();
-            services.AddSingleton<ControlAccessForm>();
-            services.AddSingleton<MilitaryForm>();
-            services.AddSingleton<MateriaisForm>();
-            services.AddSingleton<CautelaForm>();
-            services.AddSingleton<NewCautelaForm>();
+            services.AddTransient<ControlAccessForm>();
+            services.AddTransient<MilitaryForm>();
+            services.AddTransient<MateriaisForm>();
+            services.AddTransient<CautelaForm>();
+            services.AddTransient<NewCautelaForm>();
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite("Filename=./sam_database.sqlite"));            
 
             return services;

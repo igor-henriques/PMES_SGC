@@ -53,8 +53,10 @@ namespace PMES_SAM.Forms
             FillGrid(await _users.Get());
         }
         private async Task LoadComboBox()
-        {
+        {            
             AutoCompleteStringCollection dadosMilitares = new AutoCompleteStringCollection();
+
+            cbMilitar.Items.Clear();
 
             var militariesSource = await _militaries.Get();
 

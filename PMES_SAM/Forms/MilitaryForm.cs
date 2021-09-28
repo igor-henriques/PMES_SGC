@@ -39,18 +39,20 @@ namespace PMES_SAM.Forms
         }
         private void LoadComboBox()
         {
+            cbPostos.Items.Clear();
+            cbCurso.Items.Clear();
+
             for (int i = 0; i <= Enum.GetValues(typeof(Posto)).Length - 1; i++)
             {
                 cbPostos.Items.Add(EnumHelper.GetDescription((Posto)i));
-            }
-
-            cbPostos.SelectedIndex = 0;
+            }            
 
             for (int i = 0; i <= Enum.GetValues(typeof(Curso)).Length - 1; i++)
             {
                 cbCurso.Items.Add((Curso)i);
             }
 
+            cbPostos.SelectedIndex = 0;
             cbCurso.SelectedIndex = 1;
         }
         private void pbBack_Click(object sender, EventArgs e)
@@ -82,7 +84,7 @@ namespace PMES_SAM.Forms
 
                 for (int i = 0; i < dgvMilitaries.SelectedRows.Count; i++)
                 {
-                    if (int.TryParse(dgvMilitaries.SelectedRows[i].Cells[0].Value.ToString(), out int id))
+                    if (int.TryParse(dgvMilitaries.SelectedRows[i].Cells["Id"].Value.ToString(), out int id))
                     {
                         if (await CheckCautelas(id))
                         {
@@ -321,28 +323,29 @@ namespace PMES_SAM.Forms
             if (dgvMilitaries.Columns.Count <= 8)
             {
                 DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
-                column.Name = "Posto";
+                column.Name = "PostoDescription";
                 column.HeaderText = "Posto";
-                column.CellTemplate = dgvMilitaries.Columns[3].CellTemplate;
+                column.CellTemplate = dgvMilitaries.Columns["PIN"].CellTemplate;
 
                 dgvMilitaries.Columns.Insert(1, column);
             }
 
-            dgvMilitaries.Columns[0].Visible = false;
-            dgvMilitaries.Columns[2].Visible = false;
-            dgvMilitaries.Columns[7].Visible = false;
+            dgvMilitaries.Columns["Id"].Visible = false;
+            dgvMilitaries.Columns["PIN"].Visible = false;
+            dgvMilitaries.Columns["Curso"].Visible = false;
+            dgvMilitaries.Columns["Posto"].Visible = false;
 
-            dgvMilitaries.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgvMilitaries.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvMilitaries.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgvMilitaries.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dgvMilitaries.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvMilitaries.Columns["PostoDescription"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvMilitaries.Columns["Nome"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvMilitaries.Columns["Numero"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvMilitaries.Columns["Pelotao"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvMilitaries.Columns["Funcional"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-            dgvMilitaries.Columns[1].HeaderText = "Posto/Graduação";
-            dgvMilitaries.Columns[3].HeaderText = "Nome de Guerra";
-            dgvMilitaries.Columns[4].HeaderText = "Nº de Curso";
-            dgvMilitaries.Columns[5].HeaderText = "Pel Nº";
-            dgvMilitaries.Columns[6].HeaderText = "Funcional Nº";
+            dgvMilitaries.Columns["PostoDescription"].HeaderText = "Posto/Graduação";
+            dgvMilitaries.Columns["Nome"].HeaderText = "Nome de Guerra";
+            dgvMilitaries.Columns["Numero"].HeaderText = "Nº de Curso";
+            dgvMilitaries.Columns["Pelotao"].HeaderText = "Pel Nº";
+            dgvMilitaries.Columns["Funcional"].HeaderText = "Funcional Nº";
 
             for (int i = 0; i < dgvMilitaries.RowCount; i++)
             {
@@ -358,9 +361,13 @@ namespace PMES_SAM.Forms
 
             foreach (DataGridViewRow row in dgvMilitaries.Rows)
             {
-                Enum.TryParse(((Posto)row.Cells[2].Value).ToString(), out Posto posto);
-                row.Cells[1].Value = EnumHelper.GetDescription(posto);
+                Enum.TryParse(((Posto)row.Cells["Posto"].Value).ToString(), out Posto posto);
+                row.Cells["PostoDescription"].Value = EnumHelper.GetDescription(posto);
+
+                dgvMilitaries.UpdateCellValue(row.Cells["PostoDescription"].ColumnIndex, row.Index);
             }
+
+            dgvMilitaries.Update();
 
             dgvMilitaries.ClearSelection();
         }
@@ -448,7 +455,7 @@ namespace PMES_SAM.Forms
         {
             if (dgvMilitaries.Rows.Count > 0)
             {
-                currentRow = (int)dgvMilitaries.SelectedRows[0].Cells[0].Value;
+                //currentRow = (int)dgvMilitaries.SelectedRows[0].Cells[0].Value;
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

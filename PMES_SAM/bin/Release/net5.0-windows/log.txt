@@ -1,0 +1,73 @@
+
+Log Entry : 01:15:12 segunda-feira, 20 de setembro de 2021
+  :
+  :System.NullReferenceException: Object reference not set to an instance of an object.
+   at PMES_SAM.Forms.MilitaryForm.dgvMilitaries_CellClick(Object sender, DataGridViewCellEventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\MilitaryForm.cs:line 455
+   at System.Windows.Forms.DataGridView.OnCellClick(DataGridViewCellEventArgs e)
+   at System.Windows.Forms.DataGridView.OnMouseClick(MouseEventArgs e)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.DataGridView.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, WM msg, IntPtr wparam, IntPtr lparam)
+   at Interop.User32.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.Interop.Mso.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at PMES_SAM.Forms.MainForm.MenuStrip_ItemClicked(Object sender, ToolStripItemClickedEventArgs e) in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\MainForm.cs:line 135
+-------------------------------
+
+Log Entry : 01:18:35 segunda-feira, 20 de setembro de 2021
+  :
+  :System.NullReferenceException: Object reference not set to an instance of an object.
+   at PMES_SAM.Forms.MilitaryForm.dgvMilitaries_CellClick(Object sender, DataGridViewCellEventArgs e)
+   at System.Windows.Forms.DataGridView.OnCellClick(DataGridViewCellEventArgs e)
+   at System.Windows.Forms.DataGridView.OnMouseClick(MouseEventArgs e)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.DataGridView.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, WM msg, IntPtr wparam, IntPtr lparam)
+   at Interop.User32.DispatchMessageW(MSG& msg)
+   at System.Windows.Forms.Application.ComponentManager.Interop.Mso.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.RunDialog(Form form)
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at System.Windows.Forms.Form.ShowDialog()
+   at PMES_SAM.Forms.MainForm.MenuStrip_ItemClicked(Object sender, ToolStripItemClickedEventArgs e)
+-------------------------------
+
+Log Entry : 01:19:40 segunda-feira, 20 de setembro de 2021
+  :
+  :System.InvalidCastException: Unable to cast object of type 'System.String' to type 'Infra.Model.Enum.Posto'.
+   at PMES_SAM.Forms.MilitaryForm.FormatColumns() in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\MilitaryForm.cs:line 361
+   at PMES_SAM.Forms.MilitaryForm.LoadTable() in C:\Users\Ironside\source\repos\SAM BACKUP\PMES_SAM\PMES_SAM\Forms\MilitaryForm.cs:line 311
+-------------------------------
+
+Log Entry : 01:24:29 segunda-feira, 20 de setembro de 2021
+  :
+  :System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'rowIndex')
+   at System.Windows.Forms.DataGridView.UpdateCellValue(Int32 columnIndex, Int32 rowIndex)
+   at PMES_SAM.Forms.MilitaryForm.FormatColumns()
+   at PMES_SAM.Forms.MilitaryForm.LoadTable()
+-------------------------------
+
+Log Entry : 01:25:36 segunda-feira, 20 de setembro de 2021
+  :
+  :System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'rowIndex')
+   at System.Windows.Forms.DataGridView.UpdateCellValue(Int32 columnIndex, Int32 rowIndex)
+   at PMES_SAM.Forms.MilitaryForm.FormatColumns()
+   at PMES_SAM.Forms.MilitaryForm.LoadTable()
+-------------------------------
+
+Log Entry : 01:25:58 segunda-feira, 20 de setembro de 2021
+  :
+  :System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'rowIndex')
+   at System.Windows.Forms.DataGridView.UpdateCellValue(Int32 columnIndex, Int32 rowIndex)
+   at PMES_SAM.Forms.MilitaryForm.FormatColumns()
+   at PMES_SAM.Forms.MilitaryForm.LoadTable()
+-------------------------------
